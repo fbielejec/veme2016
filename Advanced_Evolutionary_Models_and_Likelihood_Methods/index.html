@@ -95,7 +95,7 @@
 			</section>
 
 
-			<section data-background="none" data-background-transition="none">
+			<section data-background="#cce8cf" data-background-transition="none">
 				<h3>Example - modelling the number and waiting times of DNA mutations with a Poisson process</h3>
 				<!-- <a class="stretch"><img src="images/poisson.png"></a> -->
 			</section>
@@ -107,7 +107,7 @@
 					<li>Let's assume that evolution at a single site is governed by a Poisson process $N$ with some intensity $r$.</li>
 					<li>Under this model the number of mutations $N(t+u)-N(u)$ in some time interval $(u,t+u]$ of length $t$ follows a
 						<a href="https://en.wikipedia.org/wiki/Poisson_distribution">Poisson distribution</a> with expected number of events $r t$. </li>
-					<li>The waiting time between any two mutations is
+					<li class="fragment">The waiting time between any two mutations is
 						<!-- the mean of exponential distribution -->
 						<a href="https://en.wikipedia.org/wiki/Exponential_distribution">exponentially distributed</a> with parameter $r$, thus the average waiting time between the occurrence of events is $1/r$.</li>
 				</ul>
@@ -314,7 +314,7 @@
 	</ul>
 	<br>
 	<br>
-	<p>
+	<p class="fragment">
 		This makes ML a <font color="#df8f09">high dimensional optimization problem</font> that usually cannot be solved in one
 		go and instead a stepwise procedure is involved.
 		<!-- the model parameters are often determined separately from the tree. -->
