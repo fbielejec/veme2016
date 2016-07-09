@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>Visualizing viral diffusion</title>
+
+	<meta name="author" content="Filip Bielejec">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<link rel="stylesheet" href="../reveal/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../reveal/css/reveal.min.css">
+	<link rel="stylesheet" href="../reveal/css/theme/night.css" id="theme">
+	<link rel="stylesheet" href="../reveal/css/font-awesome/css/font-awesome.min.css">
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+	<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+	<div style="position: absolute; top:10px; left:10px; z-index:100;">
+		<a href="http://rega.kuleuven.be/cev/ecv/software/SpreaD3">
+			<i class="fa fa-times-circle" style="color: #bbb;"></i>
+		</a>
+	</div>
+
+	<div class="reveal">
+		<div class="slides">
+
+			<section data-background="images/overImg.png" data-background-transition="none" data-transition="convex">
+				<a class="stretch" href="images/spread.png"><img src="images/spread.png"></a>
+				<h2><span>Visualizing viral diffusion</span></h2>
+				<br>
+				<small>Past and current efforts</small>
+				<br>
+				<p><a href="https://twitter.com/fbielejec">Filip Bielejec</a> / <a href="https://github.com/fbielejec">@fbielejec</a></p>
+				<p><a href="http://rega.kuleuven.be/cev/ecv">ECV - Evolutionary and Computational Virology</a></p>
+				<p><a href="https://www.kuleuven.be/english">KU Leuven</a></p>
+				<!-- <p>March 17, 2016 -->
+			</section>
+
+			<!-- this is the application which I'll be talking about today  -->
+			<section data-background="images/overImg.png" data-background-transition="none" data-transition="convex">
+				<h3>About me</h3>
+				<br>
+				<ul>
+					<li>Studied Applied Mathematics at <a href="http://www.p.lodz.pl/en">Lodz University of Technology</a></li>
+					<li>Postdoctoral researcher at the lab of <a href="http://rega.kuleuven.be/cev/ecv/lab-members/PhilippeLemey.html">Philippe Lemey</a></li>
+					<li>Enthusiast of data visualization, parallel and distributed computing</li>
+					<li>Other interests: electronics, climbing</li>
+					<li>Author of <a href="http://rega.kuleuven.be/cev/ecv/software/pibuss">πBUSS</a>,
+						<a href="https://rega.kuleuven.be/cev/ecv/tutorials/tree-imp-tutorial">Imp</a> and
+						<a href="http://rega.kuleuven.be/cev/ecv/software/SpreaD3">SpreaD3</a> </li>
+				</ul>
+			</section>
+
+
+			<section data-background="images/overImg.png" data-background-transition="none" data-transition="convex">
+				<h3>1850 cholera outbreak in Soho </h3>
+				<br>
+				<p><font color="#ff6347">John Snow</font> and a map that changed the world </p>
+			</section>
+
+			<section data-background="images/overImg.png" data-background-transition="none">
+				<!-- <h3><font color="#df8f09">John Snow</font>  </h3> -->
+				<img src="images/john_snow.jpg" style="width: 40%; height: 40%;">
+			</section>
+
+			<!-- In the world of the 1850s, cholera was believed to be spread by miasma in the air,
+					germs were not yet understood and the sudden and serious outbreak of cholera in London's Soho was a mystery.
+					So Snow did something data journalists often do now: he mapped the cases. The map essentially represented each death as a
+					bar, and you can see them in the smaller image above.  -->
+
+			<section data-background="images/overImg.png" data-background-transition="none">
+				<h3>1850 cholera outbreak in Soho </h3>
+				<br>
+				<ul>
+					<li> In XIX century cholera was believed to be spread by <font color="#ff6347">bad air</font>. </li>
+					<li> Sudden outbreak of cholera in London's Soho was a <font color="#ff6347">mystery</font>. </li>
+					<li class="fragment"> Snow did something <font color="#ff6347">revolutionary</font> for his time: he mapped the cases. </li>
+				</ul>
+
+			</section>
+
+			<section data-background="images/snow.jpg" data-background-transition="zoom">
+			</section>
+
+			<section data-background="images/snow_points.png" data-background-size="75%">
+			</section>
+
+			<section data-background="images/overImg.png" data-background-transition="none">
+				<img src="images/snow_handle.jpg" style="width: 50%; height: 50%;">
+			</section>
+
+			<section data-background="images/overImg.png" data-background-transition="none">
+				<img src="images/snow_pub.jpg" style="width: 100%; height: 100%;">
+			</section>
+
+			<section data-background="images/overImg.png" data-background-transition="none">
+				<img src="images/pint.jpg" style="width: 100%; height: 100%;">
+			</section>
+
+
+			<section data-background="images/overImg.png" data-background-transition="none">
+				<h3>1876 first phylogeny displayed on a map </h3>
+				<br>
+				<p>
+					<font color="#ff6347">Ernst Haeckel</font> and the
+					<i>Hypothetical Sketch of the Monophyletic Origin and the Extension of the 12 Races of Man from Lemuria over the Earth</i>
+				</p>
+			</section>
+
+			<section data-background="images/overImg.png" data-background-transition="none">
+						<h3>1876 first phylogeny displayed on a map </h3>
+							<br>
+				<ul>
+					<!-- especially lemurs which can be found on Madagaskar, India and Africa -->
+					<li>Naturalists had a hard time explaining how <font color="#ff6347">some species</font> got distributed over wide areas.</li>
+					<li class="fragment"> A sunken land-mass <font color="#ff6347">Lemuria</font>  has been suggested as an origin of the human species.</li>
+					<li class="fragment">This would explain the absence of "missing link" fossil records.</li>
+					<!-- good idea in publication, even if wrong -->
+					<li class="fragment">The idea, although wrong, has received considerable attention, partly owing to the <font color="#ff6347">compelling visualization</font> .</li>
+				</ul>
+			</section>
+
+<!-- Cuba is on the map (americans??) -->
+			<section data-background="images/overImg.png" data-background-transition="none">
+				<img src="images/lemuria.jpg" style="width: 100%; height: 100%;">
+			</section>
+
+			<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+				<h3>Phylogeography [Avise, 2000]</h3>
+			<div class="row">
+				<div class="col-sm-6">
+					<a class="stretch"><img src="images/phylogeography.jpg"></a>
+				</div>
+				<div class="col-sm-6">
+					<p>
+						Phylogeography connects evolutionary processes, which happen over time, with the processes of spatial dispersal into a joint spatio-temporal dynamic.
+					</p>
+				</div>
+			</div>
+			</section>
+
+			<section data-background="images/overImg.png" data-background-transition="none">
+							<h3>Phylogeography</h3>
+							<div class="row">
+
+									<div class="col-sm-12">
+								   	<a class="stretch"><img src="images/phylogeography.png" style="width: 50%; height: 50%;"></a>
+									</div>
+
+								<div class="col-sm-12">
+									<!-- <ul>
+										<li> -->
+                       <p>
+											Phylogenetic tree is now a record of both the evolutionary ancestry and the <font color="#ff6347">geographic dispersal process</font>.
+										<!-- </li> -->
+	                  <!-- <li class="fragment">Branch lengths can be rescaled into <font color="#ff6347">real time units</font> using a molecular clock.</li>
+										  <li class="fragment">Bayesian phylogeography results in whole posterior <font color="#ff6347">distributions</font> of plausible histories.</li>
+										<li class="fragment"> Major <font color="#ff6347">challenge</font> for visualization.</li> -->
+									<!-- </ul> -->
+								</p>
+								</div>
+
+							</div>
+						</section>
+
+
+			<section data-background="images/overImg.png" data-background-transition="none">
+				<h3>Visually connecting spatial information to trees </h3>
+			</section>
+
+
+			<section data-background="images/overImg.png" data-background-transition="none">
+				<h3>Annotations</h3>
+				<img src="images/figtree_geo.png" style="width: 50%; height: 50%;">
+				<br>
+				<ul>
+					<li> Tip branches labelled according to the names of the locations. </li>
+					<li class="fragment"> Most appropriate when the geographic complexity is low. </li>
+					<li class="fragment"> Prioritizes the visualisation of the tree over the spatial process. </li>
+					<li class="fragment"> Software: <a href="https://github.com/rambaut/figtree">Figtree</a>.</li>
+				</ul>
+			</section>
+
+
+
+<!-- TANGLE-GRAPHS -->
+
+<!-- A more geographically explicit visualization combines cartographic
+maps with images of trees, such as the so-called ‘tangle-maps’. The
+GenGis software, developed by Parks et al. [2009] supports these
+types of visualizations (Figure 5.2). Although tangle-maps visually
+link the tree and the map through the use of graphic lines, the tree
+is merely overlaid on the map and provides little insight into dis-
+persal history. -->
+
+
+<section data-background="images/overImg.png" data-background-transition="none">
+	<h3>Tangle-maps</h3>
+	<img src="images/tanglemaps.png" style="width: 45%; height: 45%;">
+	<br>
+	<ul>
+		<!--  tree tips related to geographic locations -->
+		<li> Term made by analogy to tangle-graphs. </li>
+		<!-- try to shoe relation between tree na dmap -->
+		<li class="fragment"> Combines cartographic maps with images of trees. </li>
+		<!-- The tree is merely overlaid on the map with little insight into dispersal history. -->
+		<li class="fragment"> Software: <a href="http://kiwi.cs.dal.ca/GenGIS/Main_Page">GenGIS</a> </li>
+	</ul>
+
+</section>
+
+
+
+<!-- GEOPHYLOGENIES -->
+<section data-background="images/overImg.png" data-background-transition="none">
+	<h3>Geophylogenies</h3>
+	<img src="images/geophylogeny.jpg" style="width: 45%; height: 45%;">
+	<br>
+	<ul>
+		<li> The tree becomes part of the map by making it's projection. </li>
+		<li class="fragment"> Can be achieved in 2D or 3D. </li>
+		<li class="fragment"> Popularity driven by <a href="https://www.google.com/earth/">GoogleEarth</a>.  </li>
+	</ul>
+</section>
+
+
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3>Bayesian Evolutionary Analysis Sampling Trees (BEAST)</h3>
+	<a href="http://mbe.oxfordjournals.org/content/29/8/1969">[Drummond et al., 2012]</a>
+</section>
+
+
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3>BEAST - model based approach</h3>
+	<img src="images/results1.png" style="width: 55%; height: 55%;">
+	<br>
+	<ul>
+	  	<li >Branch lengths can be rescaled into <font color="#ff6347">real time units</font> using a molecular clock.</li>
+	</ul>
+	<br>
+	<br>
+</section>
+
+
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3>BEAST - model based approach</h3>
+	<img src="images/results2.png" style="width: 55%; height: 55%;">
+	<br>
+	<ul>
+		<li >Branch lengths can be rescaled into <font color="#ff6347">real time units</font> using a molecular clock.</li>
+			<li >Bayesian phylogeography results in posterior <font color="#ff6347">distributions</font> of plausible histories.</li>
+	</ul>
+<br>
+</section>
+
+<!-- major challenge for visualisation -->
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3>BEAST - model based approach</h3>
+	<img src="images/results3.png" style="width: 55%; height: 55%;">
+	<!-- <br> -->
+	<ul>
+
+		<li >Branch lengths can be rescaled into <font color="#ff6347">real time units</font> using a molecular clock.</li>
+			<li >Bayesian phylogeography results in whole posterior <font color="#ff6347">distributions</font> of plausible histories.</li>
+				<li>Additional sources of information. </li>
+		<!-- <li > Major <font color="#ff6347">challenge</font> for visualization.</li> -->
+	</ul>
+</section>
+
+<!-- SPREAD -->
+<section data-background="images/overImg.png" data-background-transition="none">
+	<h3>BEAST - model based approach</h3>
+	<img src="images/model.png" style="width: 40%; height: 40%;">
+	<br>
+	<ul>
+   <li> The tree is a record of both ancestral relation & geographic movement.</li>
+	 <!--  Two sampling schemes  -->
+</ul>
+
+	 	<ul class="fragment">
+	 <li> BEAST's <font color="#ff6347">discrete phylogeographic models</font>: locations are discrete states of a CTMC
+		 <a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000520">[Lemey et al 2009]</a>.</li>
+	<li> <font color="#ff6347">Continuous phylogeographic models</font>: longitude and latitude are driven by a brownian diffusion process
+		<a href="http://mbe.oxfordjournals.org/content/27/8/1877">[Lemey et al 2010]</a>.</li>
+	</ul>
+</section>
+
+
+<!-- discrete (markov chain) -->
+<section data-background="images/overImg.png" data-background-transition="none">
+	<h3>SpreaD3 - visualizing discrete diffusion</h3>
+	<img src="images/discrete.png" style="width: 45%; height: 45%;">
+	<br>
+	<ul>
+	 <li> Each state is a point location. </li>
+	 <li class="fragment"> Branches with a state transition are projected as arcs.</li>
+	<!--diameter  proportional to the number of branches maintaining that state -->
+	 <li class="fragment"> Branches which maintain a state are displayed as circles.</li>
+	</ul>
+</section>
+
+<section data-background="images/overImg.png" data-background-transition="none">
+			<h2> <font color="#ff6347">#1 rule</font> of presentation: never do a live demo.</h2>
+		</section>
+
+		<section data-background="images/overImg.png" data-background-transition="none">
+				<h1> <font color="#ff6347"> LIVE DEMO! </font></h1>
+        <h3>  Results at: <a href="http://phylogeography.github.io/SpreaD3/">phylogeography.github.io/SpreaD3/</a> </h3>
+			</section>
+
+
+<!-- continuous (brownian motion) -->
+<!-- When bivariate coordinates are inferred for the
+internal nodes using a Brownian motion model, the geographic un-
+certainty is expressed as confidence envelopes or credible contours
+for each internal node.  We can only project a
+single tree from the posterior (e.g. using the mean bivariate location
+estimates for every node), but the uncertainty can be obtained by
+slicing each tree in the posterior at a particular point in time and
+imputing the locations for each branch that is sliced (Figure  il-
+lustrates two time slices). All these time-specific location estimates
+can be used to build a credible contour through kernel density esti-
+mation. -->
+<section data-background="images/overImg.png" data-background-transition="none">
+	<h3>SpreaD3 - vizualizing continuous phylogenetic diffusion</h3>
+	<img src="images/continuous.png" style="width: 45%; height: 45%;">
+	<br>
+	<ul>
+<!-- single tree can be projected but more importantly -->
+	 <li> Bayesian statistics: whole posterior distribution of trees.</li>
+	 	 <li class="fragment"> Each tree represents a valid hypothesis! </li>
+		 <!-- any summary must present point estimate AND uncertainty -->
+	 <li class="fragment"> Statistical estimates of the uncertainty at the internal nodes. </li>
+	</ul>
+</section>
+
+
+<section data-background="images/overImg.png" data-background-transition="none">
+		<h1> <font color="#df8f09"> Enjoy the demo </font></h1>
+	</section>
+
+
+
+	<!-- BUTT -->
+	<section data-background="images/overImg.png" data-background-transition="none">
+		<h3>But there's more!</h3>
+		<img src="images/rhinos.jpg" style="width: 45%; height: 45%;">
+		<br>
+	</section>
+
+
+	<section data-background="images/overImg.png" data-background-transition="none">
+		<!-- <h3>But there's more!</h3> -->
+		<br>
+						<img src="images/googleearth.png" style="width: 60%; height: 60%;">
+									<h4>Influenza A H5N1 data also used by Lemey et al. (2009)</h4>
+										<br>
+		<ul>
+		 <li> Support for animated 3D projections in <a href="http://earth.google.com">GoogleEarth</a> </li>
+		</ul>
+	</section>
+
+
+
+	<section data-background="images/overImg.png" data-background-transition="none">
+		<!-- <h3>But there's more!</h3> -->
+		<br>
+						<img src="images/bf_circle.png" style="width: 45%; height: 45%;">
+									<h4>Influenza A H5N1 data also used by Lemey et al. (2009)</h4>
+										<br>
+		<ul>
+		 <li> Identifying well-supported rates of transmission. </li>
+		 		 <li> Bayes factors: how much the posterior (here the time spent by Markov chain in a state) deviates from the prior beliefs. </li>
+		</ul>
+	</section>
+
+
+	<!-- We illustrate the use of SpreaD3 for data mapped to other coordinates than longitude and latitude
+	with an antigenic coordinate ancestral reconstruction for an influenza A/H3N2 virus dataset taken from Bedford et al. (2014).
+	Antigenic distances are a quantitative measure of how antigenically dissimilar virus strains are, and are projected on a 2D map.
+	When no underlying map is provided, SpreaD3 simply draws a bounding box around the data points. The idea here is to visualise three
+	layers of uncertainty by combining the polygons of the 50%, 75% and 95% Highest Posterior Density interval. -->
+		<section data-background="images/overImg.png" data-background-transition="none">
+			<!-- <h3>But there's more!</h3> -->
+			<br>
+							<img src="images/antigenic.png" style="width: 40%; height: 40%;">
+										<h4>Swine influenza A viruses dataset taken from Lewis et al. (2016)</h4>
+											<br>
+			<ul>
+			 <li> Not just geographic coordinates</li>
+			  <li> Antigenic coordinates measures how antigenically dissimilar virus strains are.</li>
+			</ul>
+		</section>
+
+		<section data-background="images/overImg.png" data-background-transition="none">
+					<!-- <h2> TODO: github, open sourced, contributions welcomed, doesn't have to be coding!s</h2> -->
+					<h2>	SpreaD3 </h2>
+					<p>	<img src="images/spread.png" style="width: 10%; height: 10%;"/>  </p>
+					<ul>
+					 <li> <font color="#df8f09">Get it</font>: <a href="http://rega.kuleuven.be/cev/ecv/software/SpreaD3">rega.kuleuven.be/cev/ecv/software/SpreaD3</a>   </li>
+					 <li> <font color="#df8f09">Fork it:</font> </li>
+				 <ul>
+					 <li>User interfaces and parsers @github:<a href="https://github.com/phylogeography/SpreaD3"> github.com/phylogeography/SpreaD3 </a>  </li>
+					 <li>Visualisation engine @github:<a href="https://github.com/phylogeography/d3-renderer"> github.com/phylogeography/d3-renderer </a>  </li>
+				 </ul>
+					 <li> All contributions welcomed!  </li>
+				 </ul>
+				</section>
+
+				<section data-background="images/overImg.png" data-background-transition="none">
+						  <h2> Special thanks to: </h2>
+						<ul>
+	            <li> Andrew Rambaut, University of Edinburgh </li>
+							<li> Philippe Lemey, KU Leuven </li>
+		        </ul>
+					</section>
+
+<!-- TODO: imp -->
+
+
+
+
+
+
+
+
+
+
+
+
+		</div>
+	</div>
+
+	<script src="../reveal/lib/js/head.min.js"></script>
+	<script src="../reveal/js/reveal.min.js"></script>
+	<script src="config.js"></script>
+
+</body>
+
+</html>

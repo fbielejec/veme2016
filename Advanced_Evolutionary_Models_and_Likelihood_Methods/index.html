@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Advanced Evolutionary Models</title>
+	<meta name="author" content="Filip Bielejec">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" href="../reveal/css/reveal.min.css">
+	<link rel="stylesheet" href="../reveal/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../reveal/css/theme/filip.css" id="theme">
+	<link rel="stylesheet" href="../reveal/css/font-awesome/css/font-awesome.min.css">
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+</head>
+
+<body>
+
+
+	<div class="reveal">
+		<div class="slides">
+
+			<section data-background="#cce8cf" data-background-transition="none" data-transition="slide">
+				<h2>Advanced Evolutionary Models and Likelihood Methods</h2>
+				<br>
+				<span> Informal introduction to Markov Models in molecular phylogenetics</span>
+				<br>
+				<br>
+				<p><a href="https://twitter.com/fbielejec">Filip Bielejec</a> / <a href="https://github.com/fbielejec">@fbielejec</a></p>
+				<p><a href="http://rega.kuleuven.be/cev/ecv">ECV - Evolutionary and Computational Virology</a></p>
+				<p><a href="https://www.kuleuven.be/english">KU Leuven</a></p>
+			</section>
+
+			<section data-background="none" data-background-transition="none">
+				<h2>Evolution as a stochastic process</h2>
+				<p>
+					The stochastic process $X$ is a collection $\left\{ X(t):\; t\in T\right\} $, where each value $X(t)$ is a random variable drawn from state space $\mathcal{E}$, with $K$ possible values, indexed by orderer time $T$.
+				</p>
+			</section>
+
+
+			<section data-background="none" data-background-transition="none" data-transition="none">
+<img src="images/t0.png">
+			</section>
+
+
+			<section data-background="none" data-background-transition="none" data-transition="none">
+		<img src="images/t2.png">
+			</section>
+
+
+			<section data-background="none" data-background-transition="none" data-transition="none">
+			<img src="images/t3.png">
+			</section>
+
+
+			<section data-background="none" data-background-transition="none" data-transition="none">
+		<img src="images/t4.png">
+			</section>
+
+
+			<section data-background="none" data-background-transition="none" data-transition="slide">
+				<h3>Phylogenetic tree implies a <font color="#df8f09">character substitution process</font> leading to observed tip states</h3>
+			</section>
+
+			<section data-background="images/overImg.png" data-background-transition="none">
+				<h3>Character substitution process </h3>
+				<!-- <h3>Phylogenetic tree implies a character substitution process leading to observed tip states</h3> -->
+				<ul>
+					<li>Single nucleotide $X(t)$ randomly drawn at time $t \geq 0$ is the smallest unit of evolution.</li>
+					<li> The collection of possible values which $X(t)$ can take defines the state-space $\mathcal{E}=\left\{ A,C,G,T\right\}$.</li>
+					<li>Conditional probabilities of a change in the sequence at time $t \geq 0$ are described by a stochastic matrix: $\mathbf{P}(t)=\left[\begin{array}{cccc} A\rightarrow A & {\color{red}A\color{red}\rightarrow \color{red}C} & {\color{green}A\color{green}\rightarrow
+						\color{green}G} & {\color{blue}A\color{blue}\rightarrow \color{blue}T}\\ {\color{red}C\color{red}\rightarrow \color{red}A} & C\rightarrow C & {\color{cyan}C\color{cyan}\rightarrow \color{cyan}G} & {\color{magenta}C\color{magenta}\rightarrow \color{magenta}T}\\
+						{\color{green}G\color{green}\rightarrow \color{green}A} & {\color{cyan}G\color{cyan}\rightarrow \color{cyan}C} & G\rightarrow G & {\color{yellow}G\color{yellow}\rightarrow \color{yellow}T}\\ {\color{blue}T\color{blue}\rightarrow \color{blue}A} &
+						{\color{magenta}T\color{magenta}\rightarrow \color{magenta}C} & {\color{yellow}T\color{yellow}\rightarrow \color{yellow}G} & T\rightarrow T \end{array}\right]$
+					</li>
+					<li> Single entry is a conditional probability: ${\color{red}A\color{red}\rightarrow \color{red}C}:\quad \forall u\geq 0 \quad p_{AC}(t)=P\left\{ X\left(t+u\right)=C\mid X(u)=A\right\}$ </li>
+				</ul>
+			</section>
+
+
+			<section data-background="images/overImg.png" data-background-transition="none">
+				<h3>Example - modelling the number and waiting times of DNA mutations with a Poisson process</h3>
+				<!-- <a class="stretch"><img src="images/poisson.png"></a> -->
+			</section>
+
+			<!-- explain as rare events -->
+			<section data-background="images/overImg.png" data-background-transition="none">
+				<h3><a href="https://en.wikipedia.org/wiki/Poisson_point_process">Poisson process</a></h3>
+				<ul>
+					<li>Let's assume that evolution at a single site is governed by a Poisson process $N$ with some intensity $r$.</li>
+					<li>Under this model the number of mutations $N(t+u)-N(u)$ in some time interval $(u,t+u]$ of length $t$ follows a
+						<a href="https://en.wikipedia.org/wiki/Poisson_distribution">Poisson distribution</a> with expected number of events $r t$. </li>
+					<li>The waiting time between any two mutations is
+						<!-- the mean of exponential distribution -->
+						<a href="https://en.wikipedia.org/wiki/Exponential_distribution">exponentially distributed</a> with parameter $r$, thus the average waiting time between the occurrence of events is $1/r$.</li>
+				</ul>
+			</section>
+
+
+			<section data-background="images/overImg.png" data-background-transition="none">
+				<h3>Sample trajectory of a Poisson process</h3>
+				<a class="stretch"><img src="images/poisson.png"></a>
+
+				<ul>
+					<li> <font color="#df8f09">See the R script </font></li>
+				</ul>
+
+			</section>
+
+
+			<section data-background="images/overImg.png" data-background-transition="none">
+				<h3><a href="https://en.wikipedia.org/wiki/Continuous-time_Markov_chain">Continuous time Markov chain models</a></h3>
+				<p>
+					Phylogenetic hypothesis testing calls for a model which not only models the number of events (mutations), but also the actual
+					<font color="#df8f09">probabilities of changing states </font> at the particular site in the alignment.
+					<p>
+						<h4 class="fragment">CTMC is defined by three elements:	</h4>
+						<ul>
+							<li class="fragment">State space $\mathcal{E}$ defining the allowed values. </li>
+							<li class="fragment">Transition matrix $P$ with entries: $p_{ij}=P\left\{ X\left(t_{n+1}\right)=j|X\left(t_{n}\right)=i\right\}$ defining probabilities of moving to the state $j$ from state $i$ over time $t_{n+1}-t_{n}$.
+							</li>
+							<li class="fragment"> Initial distribution $\mathbf{\Pi}=\{\pi_{i},\ i\in\mathcal{E}\}$ defining probabilities of being in any one of the allowed states at the initial iteration.
+							</li>
+					</p>
+
+			</section>
+
+
+			<section data-background="images/overImg.png" data-background-transition="none">
+				<h3>Continuous time Markov chain models</h3>
+				<div class="row">
+
+					<div class="row">
+						<div class="col-sm-6">
+							<a class="stretch"><img src="images/ctmc.png"></a>
+						</div>
+						<div class="col-sm-6">
+							<h4>CTMC is a stochastic process of sequential transitions from one state to another, within an allowed set of states
+					$X(t_{0})\rightarrow X(t_{1})\rightarrow\ldots\rightarrow X(t_{n})\rightarrow\ldots$
+				</h4>
+						</div>
+					</div>
+
+					<div class="col-sm-12">
+						<h4><span>Simplifying assumptions:</span></h4>
+						<ul>
+
+							<li>Markov property:
+								<font size=5>$P\left\{ X(t_{n+1}) = i_{n+1}\mid X(t_{n})=i_{n},\ldots, X(t_{0})=i_{0}\right\} = P\left\{ X(t_{n+1}) = i_{n+1}\mid X(t_{n})=i_{n}\right\}$</font>
+							</li>
+
+							<li class="fragment">
+								Homogeneity: $\forall i,j\in \mathcal{E} \quad p_{ij}\left(t\right) = p_{ij}\left(0,t\right) = p_{ij}\left(u,t+u\right)$
+							</li>
+
+							<li class="fragment">
+								Stationarity: $\forall j\in\mathcal{E} \quad \exists\pi_{j}>0 \quad \forall i\in\mathcal{E}\quad\underset{t\rightarrow\infty}{lim}p_{ij}(t)=\pi_{j}$
+							</li>
+
+							<li class="fragment">
+								Time-reversibility: $\forall i,j\in \mathcal{E} \quad \pi_{i}p_{ij}(t)=\pi_{j}p_{ji}(t)$
+							</li>
+
+						</ul>
+					</div>
+
+				</div>
+			</section>
+
+
+			<section data-background="none" data-background-transition="none" data-transition="slide">
+				<h3>Example: JC69 substitution model</h3>
+
+				<ul>
+					<li> The simplest model of nucleotide substitution [Jukes and Cantor, 1969]
+					</li>
+					<li> Transition probabilities are given by: $p_{ij}\left(t\right)=\begin{cases} \frac{1}{4}+\frac{3}{4}e^{-4rt} & \text{if }i=j\\ \frac{1}{4}-\frac{1}{4}e^{-4rt} & \text{otherwise} \end{cases}$
+					</li>
+				</ul>
+			</section>
+
+			<section data-background="none" data-background-transition="none" data-transition="slide">
+				<h3>Example: JC69 substitution model</h3>
+				<ul>
+					<li> Let's assume the state is $G$ now </li>
+					<li> What is the probability the state will change to $T$ in $0.01$ units of time? Or 0.05? or 0.1? </li>
+				</ul>
+				<br>
+				<ul class="fragment">
+					<li>
+						Because of the homogeneity assumption it is not neccessary to run the chain sequentially through all iterations to predict a state in the future.
+					</li>
+					<li> We can predict the n-th iteration by raising the transition matrix $P$ to the n-th power and multiplying the result by the distribution of the initial state $\mathbf{\Pi}^{0}$:
+						<br> $P\left\{ X\left(t_{n}\right)\right\} =\mathbf{\Pi}^{0}\times P^{n}$
+					</li>
+				</ul>
+			</section>
+
+
+			<!-- https://theclevermachine.wordpress.com/tag/markov-chain/ -->
+			<section data-background="images/overImg.png" data-background-transition="none">
+				<h4><span>Example: JC69 substitution model</span></h4>
+				<div class="row">
+					<div class="col-md-12">
+						<a class="stretch"><img style="max-width:50%; max-height:50%;" src="images/jc69.png"></a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<ul>
+							<li> Here we see that at time $0.025$ the probability of $T$ is $\approx21\%$ </li>
+							<li> After approx time $0.05$ the chain reaches its stationary distribution: </li>
+							<li> $\mathbf{\Pi}=\left\{ \pi_{T}=0.25,\pi_{C}=0.25,\pi_{A}=0.25,\pi_{G}=0.25\right\}$ </li>
+							<li> What happens if we change the initial state distribution? <font color="#df8f09">See the R script.</font></li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+
+			<section data-background="#cce8cf" data-background-transition="none" data-transition="slide">
+				<h3>Maximum Likelihood (ML) approach</h3>
+			</section>
+
+
+			<section data-background="none" data-background-transition="none" data-transition="slide">
+				<h3>Maximum Likelihood  approach</h3>
+
+				<p>With the probabilistic model of evolution and its parameters, we can calculate the probability of any observed character sequence data.
+				</p>
+
+				<p class="fragment">
+					<!-- theta represents some hypothesis -->
+					<!-- if we considered the data fixed and parameter to be the variable -->
+					Some data $D$ was generated by a model with a parameter $\theta$. The conditional probability of observing the data $\mathrm{Pr}(D \, | \, \theta)$, considered as a function of $\theta$ is called the likelihood function and denoted $\mathrm{L}(\theta
+					\, | \, D)$.
+				</p>
+			</section>
+
+
+			<section data-background="none" data-background-transition="none" data-transition="slide">
+				<h3>Maximum Likelihood Estimate</h3>
+				<p>
+					Likelihood is a function of parameter $\theta$:
+					<br> $\mathrm{Pr}(D \, | \, \theta)=\mathrm{L}(\theta \, | \, D)$
+				</p>
+				<p class="fragment">
+					To maximize the likelihood means to find a best parameter $\hat{\theta}$ which maximizes $\mathrm{L}(\theta \, | \, D)$. Such a parameter is then called the Maximum Likelihood Estimate (MLE).
+				</p>
+			</section>
+
+
+
+			<section data-background="none" data-background-transition="none" data-transition="slide">
+				<h3>Example: Coin tosses</h3>
+				<p>
+					Let us consider a coin with head and tail, which is flipped $10$ times, and lands on it's head $8$ times:
+					<br> $H,H,H,T,H,H,H,H,H,T,H$
+				</p>
+				<p class="fragment">
+					How to model the probability of such an outcome?
+				</p>
+				<ul class="fragment">
+					<li> Data: $D=\left(k=8,n=10\right)$.</li>
+					<li> Parameter: probability $\theta$ of landing a head.</li>
+					<li class="fragment">
+						Likelihood: given by the <a href="https://en.wikipedia.org/wiki/Binomial_distribution">Binomial distribution</a>: $$\mathrm{L}(\theta \, | \, k,n) = \left(\begin{array}{c} \begin{array}{c} n\\ k \end{array}\end{array}\right) \, \theta^k \, (1-\theta)^{n-k}.$$
+						</li>
+				</ul>
+			</section>
+
+
+			<section data-background="none" data-background-transition="none" data-transition="slide">
+				<h3>Example: Coin tosses</h3>
+				<br>
+				<img class="stretch" src="images/likelihood2.png">
+				<p>
+					<!-- analytically by taking the derivative, setting it equal to 0, solving for parameter -->
+					Curve presents the likelihood function for the coin tosses example: $\mathrm{L}(\theta \, | \, k=8,n=10)$.
+					<br> The MLE: $\hat{\theta}=\frac{8}{10}=0.8$
+				</p>
+			</section>
+
+
+			<section data-background="#cce8cf" data-background-transition="none" data-transition="slide">
+				<h3>Maximum Likelihood in phylogenetics</h3>
+			</section>
+
+
+<section data-background="none" data-background-transition="none" data-transition="slide">
+	<h3>Maximum Likelihood in phylogenetics</h3>
+	<p>In phylogenetic analysis, the parameter $\theta$ is <font color="#df8f09">multidimensional</font> and comprises:</p>
+	<ul>
+		<li>Parameters of the evolutionary model, possibly multiple.</li>
+				<li>Tree topology.</li>
+				<li>Branch lengths.</li>
+	</ul>
+	<br>
+	<br>
+	<p>
+		This makes ML a <font color="#df8f09">high dimensional optimization problem</font> that usually cannot be solved in one
+		go and instead a stepwise procedure is involved.
+		<!-- the model parameters are often determined separately from the tree. -->
+	</p>
+</section>
+
+
+<section data-background="none" data-background-transition="none" data-transition="slide">
+	<h3>Likelihood of a sequence evolution on a tree</h3>
+	<div class="row">
+		<div class="col-sm-6">
+			<a class="stretch"><img src="images/pruning2.png"></a>
+		</div>
+		<div class="col-sm-6">
+			<p>
+				Tree pruning [Felsenstein 1981]: recursive algorithm for calculating likelihood of a (observed) sequence on a tree.
+			</p>
+				<p class="fragment">
+Partial likelihood $L_{i}(x_{i})$ of observing data at the descendants of node $i$ given state $x_{i}$ at node $i$ expressed in terms of
+partial likelihoods at nodes $j$ and $k$.
+			</p>
+		</div>
+	</div>
+</section>
+
+
+
+
+
+
+<section data-background="none" data-background-transition="none" data-transition="none">
+	<h3>Finding branch lengths</h3>
+   <br>
+			<p>
+				Branch lengths $b$ can computed numerically by maximizing the log-likelihood of the whole alignment $X$,
+				which is a sum of the log-likelihoods at the particular sites:
+        $l(b | X,\tau)=\underset{j=1}{\overset{l}{\sum}}log\left(L(b | \mathbf{x}_{j},\tau)\right)$
+			</p>
+<br>
+<br>
+				<p class="fragment">
+					This means finding those branch lengths for tree $\tau$ which maximize the log-likelihood function.
+			  </p>
+</section>
+
+
+<section data-background="none" data-background-transition="none" data-transition="none">
+	<h3>Finding model parameters</h3>
+   <br>
+	 <ul>
+ 		<li>Model parameters $\Theta$ can be estimated similarly to estimating branch lengths.</li>
+ 		<li>Using the observed alignment and a fixed tree find the parameters which maximize the log-likelihood:
+<br>
+$l(\Theta|X,\tau,b)$
+		</li>
+ 	</ul>
+
+</section>
+
+<section data-background="none" data-background-transition="none" data-transition="none">
+	<h3>Searching through tree topology space</h3>
+	<div class="row">
+		<div class="col-sm-6">
+<a class="stretch"><img src="images/table1.png"></a>
+		</div>
+		<div class="col-sm-6">
+
+			<p>
+				Finding the tree topology that maximizes the likelihood of observing tip sequence requires a search through the space of all possible tree topologies.
+			</p>
+
+				<p class="fragment">
+Impossible, but in the smallest cases
+			</p>
+
+			<p class="fragment">
+Heuristic tree search methods (not discussed here).
+		</p>
+
+		</div>
+	</div>
+</section>
+
+
+<!-- TODO: how reliable is the tree -->
+
+<section data-background="#cce8cf" data-background-transition="none" data-transition="none">
+	<h3>Assessing evolutionary trees and models </h3>
+</section>
+
+
+<section data-background="none" data-background-transition="none" data-transition="none">
+	<h3>Are two evolutionary trees/models different?</h3>
+<p>
+We already know how given a sequence alignment data and a substitution models to reconstruct
+trees and compute their likelihoods.
+</p>
+<br>
+<p class="fragment">
+	But can we decide from the likelihood:
+	<ul class="fragment">
+		<li>Which substitution model better fits the data?</li>
+		<li> Which reconstructed tree is better (in terms of their likelihoods)?</li>
+		<li> Whether one tree likelihood is significantly better/worse?</li>
+	</ul>
+</p>
+<br>
+<p class="fragment">
+	These questions can be assesed by performing hypothesis tests.
+</p>
+</section>
+
+
+<section data-background="none" data-background-transition="none" data-transition="none">
+<h3>Likelihood ratio test (LRT)</h3>
+<div class="row">
+	<div class="col-sm-6">
+<a class="stretch"><img src="images/lrt.png"></a>
+	</div>
+	<div class="col-sm-6">
+		<p>
+			<font size=4>
+			If two models are nested (like TN in GTR), their log-likelihood difference $2\left(l\left(\text{GTR}\right)-l\left(\text{TN}\right)\right)$
+		follows a $\chi^{2}$ distribution with degrees of freedom equal to the number of additional
+		parameters ($df = 3$).
+	</font>
+		</p>
+
+		<p>
+			<font size=4>
+				If the observed value falls into
+				the extreme 5% interval (shaded
+				area), we say the more complex
+				model (GTR) is significatly
+				better than the simpler (TN).
+		</font>
+		</p>
+
+		<p>
+			<font size=4>
+				<font>$H_{0}$</font>: both models are equally good.
+				<br>
+				<font>$H_{A}$</font>: the more complex model is better.
+		</font>
+		</p>
+
+	</div>
+</div>
+</section>
+
+
+<section data-background="none" data-background-transition="none" data-transition="none">
+	<h3>Testing tree topologies</h3>
+
+<!-- likelihood diff had unknown distribution -->
+<p>
+	Two different topologies are not nested, thus, we cannot use the$\chi^{2}$ distribution.
+</p>
+
+<p class="fragment">
+	Hence, bootstrap-based methods have been applied to
+determine the distribution of log-likelihood differences for testing.
+</p>
+
+</section>
+
+<!--  bootstrap -->
+<!-- bootstrap because of baron muchausen -->
+<section data-background="none" data-background-transition="none" data-transition="none">
+	<h3>Bootstrap - basic idea</h3>
+
+	<ul>
+		<li> Compute log-likelihood values $l_{1},\ldots,l_{N}$ for tree topologies $\tau_{1},\ldots,\tau_{N}$.</li>
+		<li>
+			Draw 	<font color="#df8f09">bootstrap samples</font> $i$ from the alignment,
+			re-estimate the log-likelihood values $l_{X}^{\left(i\right)}$
+      for each tree $T_{x}$ and for each sample $i$.
+		</li>
+
+		<li>
+Center the log-likelihoods with the mean $\overline{l}_{X}^{\left(i\right)}$ by setting
+$\tilde{l}_{X}^{\left(i\right)}=l_{X}^{\left(i\right)}-\overline{l}_{X}^{\left(i\right)}$.
+		</li>
+<li>
+		Use the differences between the $\tilde{l}_{X}^{\left(i\right)}$ to determine the <font color="#df8f09">non-parametric distribution</font> of differences:
+		$\delta^{\left(i\right)}=\tilde{l}_{Y}^{\left(i\right)}-\tilde{l}_{Z}^{\left(i\right)}$.
+	</li>
+
+	<li>
+			Use the distribution of $\delta^{\left(i\right)}$ to test the trees.
+		</li>
+
+	</ul>
+
+</section>
+
+
+<!-- TODO: bootstrap example-->
+
+
+			<section data-background="none" data-background-transition="none">
+				<!-- very happy  to answer all questions you might have -->
+				<h2>Thank you!</h2>
+				<h2><font color="#df8f09"> Questions?</font></h2>
+			</section>
+
+		</div>
+	</div>
+
+	<script src="../reveal/lib/js/head.min.js"></script>
+	<script src="../reveal/js/reveal.min.js"></script>
+	<script src="../reveal/js/config.js"></script>
+
+</body>
+
+</html>
