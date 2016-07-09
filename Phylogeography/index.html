@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>Bayesian phylogeography</title>
+	<meta name="author" content="Filip Bielejec">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="../reveal/css/reveal.min.css">
+	<link rel="stylesheet" href="../reveal/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../reveal/css/theme/filip.css" id="theme">
+	<link rel="stylesheet" href="../reveal/css/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<div class="slides">
+
+			<section data-background="images/overImg.png" data-background-transition="none">
+				<h2><span>Bayesian phylogeography</span></h2>
+				<br>
+				<small> Theory </small>
+				<br>
+				<p><a href="https://twitter.com/fbielejec">Filip Bielejec</a> / <a href="https://github.com/fbielejec">@fbielejec</a></p>
+				<p><a href="http://rega.kuleuven.be/cev/ecv">ECV - Evolutionary and Computational Virology</a></p>
+				<p><a href="https://www.kuleuven.be/english">KU Leuven</a></p>
+			</section>
+
+<!-- phylogenetics recap -->
+
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3>Phylogenetic trees</h3>
+<div class="row">
+	<div class="col-sm-6">
+		<a class="stretch"><img src="images/tree2.png"></a>
+	</div>
+	<div class="col-sm-6">
+
+		<p>
+			Depict relationships between genes or organisms.
+		</p>
+
+		<p class="fragment">
+			Estimated from comparative data (nucleotide, codon, amino-acid or other character sequences) observed at the tips.
+		</p>
+
+		<p class="fragment">
+To do inference one needs a  probabilistic model that describes the process of character change along the bifurcating tree.
+		</p>
+
+	</div>
+</div>
+</section>
+
+
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3>Continuous time markov chain</h3>
+<div class="row">
+	<div class="col-sm-6">
+		<a class="stretch"><img src="images/substitution.png"></a>
+	</div>
+	<div class="col-sm-6">
+
+		<p>
+		CTMC substitution models are commonly used to describe the substitution process at a particular site in the alignment.
+		</p>
+
+		<p class="fragment">
+	They are fully characterized by $K \times K$ rate matrix $\mathbf{Q}$, where $K$ denotes the \textbf{size of the discrete state space} $S$.
+		</p>
+
+	</div>
+</div>
+</section>
+
+
+<!-- what is phylogeography -->
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3>Phylogeography</h3>
+<div class="row">
+	<div class="col-sm-6">
+		<a class="stretch"><img src="images/phylogeography.jpg"></a>
+	</div>
+	<div class="col-sm-6">
+
+		<p>
+			Phylogeography connects evolutionary processes, which happen over time, with the processes of spatial dispersal into a joint spatio-temporal dynamic.
+		</p>
+
+		<p class="fragment">
+			<font size=5>
+			"$\left(\ldots\right)$ a field of study concerned with
+			the principles and processes
+			governing the geographic
+			distribution of genealogical
+			lineages, especially those
+			within and among closely
+			related species." --- <i>Avise, 2000</i>
+		</font>
+		</p>
+
+	</div>
+</div>
+</section>
+
+
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3>Phylogeography</h3>
+  <br>
+		<p>
+			Historically phylogeographic inference ignored the joint character of the two processes.
+		</p>
+
+		<p class="fragment">
+			Stepwise procedure: <br>
+			<ul>
+				<li class="fragment">Infer the tree using character sequence data only. </li>
+				<li class="fragment">Reconstruct the spatial diffusion, conditioning on the inferred tree topology. </li>
+					<li class="fragment">Uncertainty? </li>
+			</ul>
+
+		</p>
+
+</section>
+
+<!-- style="width: 40%; height: 40%;" -->
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3>Bayesian Phylogeography</h3>
+  <br>
+	<p>
+<a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000520">Lemey et al, [2009]</a> considered Bayesian reconstruction that allows for joint inference of the evolutionary history and spatial dispersal.
+	</p>
+	<a class="stretch"><img src="images/paper.png" style="width: 65%; height: 65%;"></a>
+</section>
+
+
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3>Bayesian Phylogeography</h3>
+  <br>
+	<a class="stretch"><img src="images/discrete_phylogeography1.png" style="width: 50%; height: 50%;"></a>
+
+	<p>
+		Observed data at the $N$ tips of phylogeny $\mathbf{F}$ now consist of both the character sequences $\mathbf{X}=(X_{1},...,X_{N})$ and
+		geographic locations (countries, districts, cities) at which they were recorded $\mathbf{Y}=(Y_{1},...,Y_{N})$.
+	</p>
+
+</section>
+
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3>Bayesian Phylogeography</h3>
+  <br>
+	<a class="stretch"><img src="images/discrete_phylogeography2.png" style="width: 45%; height: 45%;"></a>
+
+	<p>
+			<font size=5.5>
+		Two independent stochastic processes are responsible for generating the data:
+		</font>
+	</p>
+
+	<p class="fragment">
+				<font size=5.5>
+		Ancestral states of $\mathbf{X}$ are generated as before by a CTMC characterized by rate matrix $\mathbf{Q}$.
+		</font>
+	</p>
+
+	<p class="fragment">
+		<font size=5.5>
+		Unobserved ancestral locations $(Y_{N+1},...,Y_{2N-2})$ are generated by a separate CTMC characterized by rate matrix $\mathbf{\Phi}$.
+		</font>
+	</p>
+
+</section>
+
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3>Posterior probability</h3>
+  <br>
+
+	<p>
+$P\left(\mathbf{F},\mathbf{Q},\mathbf{\Phi}|\mathbf{X},\mathbf{Y}\right)\approx$
+
+		$\underbrace{P(\mathbf{X}|\mathbf{Q},\mathbf{F})}_{\begin{array}{c}
+\substack{\text{Sequence}\\
+\text{likelihood}
+}
+\end{array}}\cdot\underbrace{P(\mathbf{Y}|\mathbf{\Phi},\mathbf{F})}_{\begin{array}{c}
+\substack{\text{Location trait}\\
+\text{likelihood}
+}
+\end{array}}\cdot\underbrace{P(\mathbf{F})}_{\begin{array}{c}
+\substack{\text{Topology}\\
+\text{prior}
+}
+\end{array}}\cdot\underbrace{P(\mathbf{Q})}_{\begin{array}{c}
+\substack{\text{Sequence substitution}\\
+\text{prior}
+}
+\end{array}}\cdot\underbrace{P(\mathbf{\Phi})}_{\begin{array}{c}
+\substack{\text{Location exchange}\\
+\text{prior}
+}
+\end{array}}$
+	</p>
+<br>
+<p>
+  <a href="https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">Markov Chain Monte Carlo (MCMC)</a> algorithms are used to
+	sample directly from $P\left(\mathbf{F},\mathbf{Q},\mathbf{\Phi}|\mathbf{X},\mathbf{Y}\right)$.
+<p>
+
+</section>
+
+
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3>Discrete diffusion models</h3>
+  <br>
+	<a class="stretch"><img src="images/diffusion_models1.png" style="width: 45%; height: 45%;"></a>
+
+	<ul>
+	  <li>The entries of the transition matrix $\mathbf{\Phi}$ are the transition rates $\phi_{ij}$ between locations $i$ and $j$.</li>
+		<li>They are the parameters we wish to estimate by the MCM.</li>
+	</ul>
+
+	<p>
+	</p>
+</section>
+
+<!-- distance informed priors -->
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3>Location exchange rate priors</h3>
+  <br>
+	<a class="stretch"><img src="images/diffusion_models2.png" style="width: 45%; height: 45%;"></a>
+
+	<ul>
+		<li>Rates in $\mathbf{\Phi}$ are <i>a priori</i> independent and <a href="https://en.wikipedia.org/wiki/Gamma_distribution">Gamma distributed</a> (strictly positive).</li>
+		<li>Distance informed priors: More geographically distant sites have smaller infinitesimal migration rates.</li>
+	</ul>
+
+</section>
+
+<!-- sparse data -->
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3>Do we need all those location parameters?</h3>
+  <br>
+	<a class="stretch"><img src="images/diffusion_models3.png" style="width: 45%; height: 45%;"></a>
+
+	<ul>
+		<!-- one observation per tip! -->
+		<li> Geographic location data $\mathbf{Y}$ is sparse.</li>
+			<!-- <li class="fragment"> Do we need all those location parameters?.</li> -->
+	</ul>
+
+</section>
+
+<!-- bssvs -->
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3>Bayesian stochastic search variable selection [Cybis et al. 2013]</h3>
+  <br>
+	<a class="stretch"><img src="images/diffusion_models4.png" style="width: 45%; height: 45%;"></a>
+
+	<ul>
+		<!-- in the limit the sum of independent bernoulli RVs are poisson distributed -->
+		<li> BSSVS: Augments the state space with binary indicator variables $I_{[0,1]}$
+			(<a href="https://en.wikipedia.org/wiki/Bernoulli_distribution">Bernoulli</a> RV's).</li>
+		<!-- very rarely (if ever). -->
+		<li> A priori expect most transitions to occur with a rate $0$.</li>
+
+	</ul>
+
+</section>
+
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3> Bayes factors (BF) </h3>
+  <br>
+	<a class="stretch"><img src="images/diffusion_models5.png" style="width: 45%; height: 45%;"></a>
+
+	<ul>
+		<li> MCMC exploration of the $I_{[0,1]}$ indicators parameter space has an interesting by-product.</li>
+		<li> BFs provide a natural test of the significance of a particular diffusion rate.</li>
+	</ul>
+
+</section>
+
+
+<!-- visualisation -->
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3> Bayes factors </h3>
+  <br>
+	<a class="stretch"><img src="images/bf_map.png" style="width: 45%; height: 45%;"></a>
+
+	<ul>
+		<li><a href="https://github.com/phylogeography/SpreaD3">SpreaD3</a> (Bielejec, et al. [2016]) identifies and vizualises well-supported rates through Bayes factor tests. </li>
+	</ul>
+
+</section>
+
+
+<!-- Kass and Raftery (1995) -->
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3> Bayes factors </h3>
+  <br>
+	<ul>
+    <li><a>Kass and Raftery (1995)</a> provide  a table for the interpretation of BF:</li>
+	</ul>
+  <br>
+	<table style="width:100%">
+   <tr>
+     <th>K</th>
+     <th>strength of evidence</th>
+   </tr>
+   <tr>
+     <td>1 to 3</td>
+     <td>bare mention</td>
+   </tr>
+	 <tr>
+		 <td>3 to 20 </td>
+		 <td>positive</td>
+	 </tr>
+	 <tr>
+		 <td>20 to 150</td>
+		 <td>strong</td>
+	 </tr>
+	 <tr>
+		 <td> >150 </td>
+		 <td>very strong</td>
+	 </tr>
+ </table>
+
+</section>
+
+<!-- continuous phylogenetic diffusion -->
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3> Continuous phylogenetic diffusion</h3>
+	<h4><a href="http://mbe.oxfordjournals.org/content/27/8/1877">[Lemey et al 2010]</a></h4>
+  <br>
+	<a class="stretch"><img src="images/continuous1.png" style="width: 55%; height: 55%;"></a>
+
+	<ul>
+		<li>The sampling scheme sometimes does not render itself to discretization. </li>
+	</ul>
+
+</section>
+
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3> Continuous phylogenetic diffusion</h3>
+  <br>
+	<a class="stretch"><img src="images/continuous2.png" style="width: 55%; height: 55%;"></a>
+
+	<ul>
+		<li> Continuous model models the diffusion process as draws from a bivariate normal distribution. </li>
+	</ul>
+
+</section>
+
+<!-- relaxed random walk -->
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3> Continuous phylogenetic diffusion</h3>
+  <br>
+	<a class="stretch"><img src="images/continuous3.png" style="width: 55%; height: 55%;"></a>
+
+	<ul>
+		<li> Under "vanilla" brownian diffusion process each branch evolves at the same rate, which is biologically implausible.  </li>
+			<li> To relax that assumption each branch gets a Gamma distributed rate scalar (relaxed random walk).  </li>
+	</ul>
+
+</section>
+
+
+<!-- beast -->
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3> Beast 	<a href="http://mbe.oxfordjournals.org/content/29/8/1969">[Drummond et al., 2012]</a></h3>
+  <br>
+	<a class="stretch"><img src="images/beast.png" style="width: 55%; height: 55%;"></a>
+	<ul>
+		<li> Framework and a suite of programs for Bayesian phylogenetics which implement the presented models.</li>
+	</ul>
+</section>
+
+<!-- tell a story (global influenza) -->
+<section data-background="images/overImg.png" data-background-transition="none">
+	<h2><font color="#df8f09">Example: Global influenza dynamics </font></h2>
+</section>
+
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3> Seasonal circulation of Influenza A H3N2 <a href="http://sysbio.oxfordjournals.org/content/63/4/493">[Bielejec et al., 2014]</a></h3>
+  <br>
+	<a class="stretch"><img src="images/flu_2models.png" style="width: 55%; height: 55%;"></a>
+	<ul>
+		<li>Influenza A H3N2 sequences sampled between 2003 to 2006 from Australia, Europe, Japan, USA, New Zealand, Southeast Asia and Hong Kong
+			($n = 75$ each, dataset from  <a>Bahl et al., 2011)</a>.</li>
+	</ul>
+</section>
+
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3> Seasonal circulation of Influenza A H3N2 </h3>
+  <br>
+	<a class="stretch"><img src="images/flu_2models.png" style="width: 55%; height: 55%;"></a>
+	<ul>
+		<li>Source / sink in influenza dynamics?</li>
+	</ul>
+</section>
+
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3> Seasonal circulation of Influenza A H3N2 </h3>
+  <br>
+	<a class="stretch"><img src="images/flu_2models.png" style="width: 55%; height: 55%;"></a>
+	<ul>
+		<li>Phylogeographic model of diffusion between $K=7$ locations, $S=8$ epochs alternating between spring and summer to autumn and winter on the northern hemisphere.</li>
+		<li class="fragment">Parameters of the diffusion processes are shared among spring - summer and autumn - winter epochs.</li>
+	</ul>
+</section>
+
+
+
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3> Seasonal circulation of Influenza A H3N2 </h3>
+  <br>
+	<a class="stretch"><img src="images/flu_2seasons.png" style="width: 100%; height: 100%;"></a>
+	<ul>
+		<li>Best supported diffusion rates for the spring - summer (left) and autumn - winter (right) epochs.</li>
+		<!-- spring and summer mirrors autumn and winter -->
+		<li class="fragment">Seasonal dynamics with prominent role of Southeast Asia.</li>
+		<li class="fragment">Source - sink? </li>
+	</ul>
+</section>
+
+
+
+
+
+			<section data-background="images/overImg.png" data-background-transition="none">
+				<h2>Thank you!</h2>
+				<h2><font color="#df8f09"> Questions?</font></h2>
+			</section>
+
+		</div>
+	</div>
+
+	<script src="../reveal/lib/js/head.min.js"></script>
+	<script src="../reveal/js/reveal.min.js"></script>
+	<script src="../reveal/js/config.js"></script>
+
+</body>
+
+</html>

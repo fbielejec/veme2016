@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>Coalescent theory recap</title>
+	<meta name="author" content="Filip Bielejec">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="../reveal/css/reveal.min.css">
+	<link rel="stylesheet" href="../reveal/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../reveal/css/theme/filip.css" id="theme">
+	<link rel="stylesheet" href="../reveal/css/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+</head>
+<body>
+
+	<div class="reveal">
+		<div class="slides">
+
+			<section data-background="images/overImg.png" data-background-transition="none">
+				<h2><span>Coalescent</span></h2>
+				<br>
+				<small> Short recap </small>
+				<br>
+				<p><a href="https://twitter.com/fbielejec">Filip Bielejec</a> / <a href="https://github.com/fbielejec">@fbielejec</a></p>
+				<p><a href="http://rega.kuleuven.be/cev/ecv">ECV - Evolutionary and Computational Virology</a></p>
+				<p><a href="https://www.kuleuven.be/english">KU Leuven</a></p>
+			</section>
+
+			<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+				<h3> What is coalescent theory?</h3>
+			  <br>
+				<a class="stretch"><img src="images/intro.png" style="width: 75%; height: 75%;"></a>
+				<p>
+					<font size=5>Coalescent: Model of the ancestral relationships of a small sample of individuals
+						taken from a large population.
+					</font>
+				</p>
+			</section>
+
+			<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+				<h3> What is coalescent theory?</h3>
+			  <br>
+				<a class="stretch"><img src="images/intro.png" style="width: 75%; height: 75%;"></a>
+				<p>
+					<font size=5>
+				Coalescent: Describes a <font color="#df8f09">probability distribution</font>
+				for the shape and size of trees obtained by sampling genes from that population.
+					</font>
+			</p>
+			</section>
+
+
+			<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+				<!-- simplified population -->
+				<h3>The Wright-Fisher model </h3>
+			<div class="row">
+				<div class="col-sm-6">
+					<a class="stretch"><img src="images/wright-fischer1.png"></a>
+				</div>
+				<div class="col-sm-6">
+					<font color="#df8f09">Assumptions:</font>
+					<ul>
+						<li>The population size of $N$ individuals is constant through time.</li>
+						<li class="fragment">Time (generations) is discrete, i.e. every individual is replaced in every generation. </li>
+						<li class="fragment">All individuals have equal chances of reproducing. </li>
+					</ul>
+				</div>
+			</div>
+			</section>
+
+
+			<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+				<!-- simplified population -->
+				<h3>The Wright-Fisher model </h3>
+			<div class="row">
+				<div class="col-sm-6">
+					<a class="stretch"><img src="images/wright-fischer2.png"></a>
+				</div>
+				<div class="col-sm-6">
+					<font color="#df8f09">The coalescent process for $n=2$ individuals:</font>
+					<ul>
+						<li>
+								<font size=5>
+							Time (generations), starting from present (tips) are numbered:
+							$t_{0},t_{1},t_{2},\ldots,t_{k}$.
+						</font>
+						</li>
+						<li class="fragment">
+								<font size=5>
+							Prob. of two individuals sampled at $t_{0}$ sharing an ancestor at
+							$t_{1}$ is $\frac{1}{N}$.
+								</font>
+						</li>
+						<li class="fragment">
+								<font size=5>
+							Prob. of two individuals sampled at $t_{0}$
+							sharing an ancestor at $t_{2}$ is:
+$P(t_{2})=\underbrace{\left(1-\frac{1}{N}\right)}_{\begin{array}{c}
+\substack{\text{Not sharing an ancestor}\\
+\text{at t1}
+}
+\end{array}}\cdot\underbrace{\frac{1}{N}}_{\begin{array}{c}
+\substack{\text{Sharing an ancestor}\\
+\text{at t2}
+}
+\end{array}}$
+	</font>
+						 </li>
+						 <li class="fragment">
+							 	<font size=5>
+							 Prob. of two individuals sampled at $t_{0}$ sharing an ancestor at
+							 $t_{k}$ is:
+	 							$P\left(t_{k}\right)=\left(\frac{1}{N}\right)\left(1-\frac{1}{N}\right)^{k-1}$
+	</font>
+						</li>
+					</ul>
+				</div>
+			</div>
+			</section>
+
+			<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+				<h3>The Wright-Fisher model </h3>
+			<div class="row">
+				<div class="col-sm-6">
+					<a class="stretch"><img src="images/wright-fischer2.png"></a>
+				</div>
+				<div class="col-sm-6">
+					<font color="#df8f09"> Generalizing to $2\leq n\leq N$ sampled individuals: </font>
+					<ul>
+						<li>
+								<font size=5>
+							There are $\left(\begin{array}{c}
+n\\
+2
+\end{array}\right)=\frac{n\left(n-1\right)}{2}
+ $ pairs in $t_{0}$ and each has  $\frac{1}{N}$ probability to coalesce in $t_{1}$:
+ <br>
+$P\left(t_{1}\right)=\frac{n\left(n-1\right)}{2}\times\frac{1}{N}$.
+	</font>
+ </li>
+					  <li class="fragment">
+								<font size=5>
+							Prob. of $n$ pairs sampled at $t_{0}$ sharing a common ancestor at $t_{k}$ is:
+$P\left(t_{k}\right)=\left(\frac{n\left(n-1\right)}{2N}\right)\left(1-\frac{n\left(n-1\right)}{2N}\right)^{k-1}.$
+	</font>
+						</li>
+					</ul>
+				</div>
+			</div>
+			</section>
+
+
+<!-- cont approx -->
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3>Kingmans coalescent </h3>
+		<ul>
+		<li> 	<font color="#df8f09">$n$ pairs sampled at $t_{0}$ share a common ancestor at $t_{k}$:</font>
+		 $P\left(t_{k}\right)=\left(\frac{n\left(n-1\right)}{2N}\right)\left(1-\frac{n\left(n-1\right)}{2N}\right)^{k-1}$</li>
+		</ul>
+
+<ul class="fragment">
+		<li> This is a PMF of a geometric distribution
+			with parameter $p=\frac{n\left(n-1\right)}{2N}$</li>
+<li>
+		<a href="https://en.wikipedia.org/wiki/Geometric_distribution">Geometric distribution</a>
+		returns the probability that the $k$-th trial out of $k$ independent Bernoulli trials, each with success probability $p$, is a successful one:
+	$P\left(X=k\right)=p\left(1-p\right)^{k-1},\;0< p\leq1,\; k\in\left\{ 1,2,3,\ldots\right\}$
+</li>
+</ul>
+</section>
+
+
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3>Kingmans coalescent </h3>
+<div class="row">
+	<div class="col-sm-6">
+				<a class="stretch"><img src="images/approximation.png"></a>
+	</div>
+	<div class="col-sm-6">
+		<ul>
+			<li > For small values of $p$ <b>geometric distribution</b> can be approximated by its
+				continuous equivalent, the
+				<a href="https://en.wikipedia.org/wiki/Exponential_distribution">exponential distribution</a>.
+			</li>
+			<li class="fragment">We can now move into continuous time:
+$f\left(t\right)=\frac{n\left(n-1\right)}{2N}\textrm{exp}\left(-\frac{n\left(n-1\right)}{2N}t\right)$
+			 </li>
+<!-- the mean of geometric distribution -->
+	<li class="fragment"> The <font color="#df8f09">rate of coalescence</font> at time $t$ is $\frac{n\left(n-1\right)}{2N}$</li>
+		</ul>
+	</div>
+</div>
+</section>
+
+
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3>Kingmans coalescent </h3>
+<div class="row">
+	<div class="col-sm-6">
+$f\left(t\right)=\frac{n\left(n-1\right)}{2N}\textrm{exp}\left(-\frac{n\left(n-1\right)}{2N}t\right)$
+	</div>
+	<div class="col-sm-6">
+		<ul>
+			<li> Kingman's coalescent is a continuous time version of the Wright-Fisher model with $n$ sampled individuals. </li>
+			<!-- the constant population size approximation does not hold -->
+	    <li class="fragment">  In real populations $N$ changes over time:
+				$\frac{n\left(n-1\right)}{2N\left(t\right)}$
+			</li>
+			<li class="fragment"> $N(t)$ is the  <font color="#df8f09">demographic function</font> and is what we want to infer.
+			</li>
+		</ul>
+	</div>
+</div>
+</section>
+
+
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3>Commonly used demographic functions </h3>
+	<br>
+		<a class="stretch"><img src="images/demographic.png" style="width: 80%; height: 80%;"></a>
+		<ul>
+			<li>Arrows show when one function is a special case of another.</li>
+      <li>Number of parameters for each model is shown in parentheses.</li>
+		</ul>
+</section>
+
+
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3>Commonly used demographic functions </h3>
+	<br>
+		<a class="stretch"><img src="images/demographic2.png"></a>
+		<!-- <ul>
+			<li>  Arrows show when one function is a special case of another.</li>
+ <li> Number of parameters for each model shown in parentheses.</li>
+		</ul> -->
+
+</section>
+
+
+
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3>Effective population size </h3>
+	<!-- <br> -->
+		<ul>
+			<!-- and the Kingsmans coalescent extends on it -->
+			<li>In reality we cannot estimate $N$ because real populations differ from the simple Wright-Fisher model.</li>
+      <li>Instead we estimate $N_{e}$ <font color="#df8f09">the effective population size</font>.</li>
+		</ul>
+
+		<ul class="fragment">
+			<li>$N_{e}$ can be though of as the "genetic" size of the population and usually $N_{e}\ll N$.</li>
+			<!-- is proportional -->
+		  <li>If selection is weak then $N_{e}\approx N$. </li>
+		  <li>If selection is strong then $N_{e}$ is not proportional to $N$ and is best interpreted as a measure of relative genetic diversity.</li>
+		</ul>
+</section>
+
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3>Coalescent inference </h3>
+		<a class="stretch"><img src="images/inference1.png"></a>
+</section>
+
+
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3>Coalescent inference </h3>
+		<a class="stretch"><img src="images/inference2.png"></a>
+</section>
+
+
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3>Skyline plots</h3>
+	<br>
+		<ul>
+			<li> Tools used to explore which demographic function best suits the demographic history of sampled sequences.</li>
+				<li class="fragment"> Provide a plot of estimated effective population sizes $N_{e}$ through time.</li>
+				<ul class="fragment">
+							<li >Classic skyline plot. </li>
+								<li > Bayesian skyline plot (phylogenetic uncertainty). </li>
+								<li > Bayesian skyride plot (uses a more flexible statistical model). </li>
+				</ul>
+		</ul>
+</section>
+
+
+<!-- all the skylines and finito -->
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3>Classic skyline plot <a>[Pybus et al., 2000]</a></h3>
+<div class="row">
+	<div class="col-sm-6">
+	<a class="stretch"><img src="images/classic_skyline1.png"></a>
+	</div>
+	<div class="col-sm-6">
+		<ul>
+			<li> Piecewise constant model. </li>
+			<li class="fragment"> Estimated effective pop. size during each interval:
+      <br>
+			$\hat{N_{k}}=\frac{k\left(k-1\right)}{2}t_{k}$
+			 </li>
+      <li class="fragment"> $\hat{N_{k}}$ estimates the  <font color="#df8f09">harmonic mean</font> of the demographic function $N(t)$ during each interval. </li>
+		</ul>
+	</div>
+</div>
+</section>
+
+
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3>Classic skyline plot <a>[Pybus et al., 2000]</a></h3>
+	<!-- fitted to simulated data -->
+	<a class="stretch"><img src="images/classic_skyline2.png"></a>
+</section>
+
+
+
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3>Bayesian skyline plot <a>[Drummond et al., 2005]</a></h3>
+	<div class="row">
+		<div class="col-sm-6">
+			<a class="stretch"><img src="images/bayesian_skyline1.png"></a>
+		</div>
+		<div class="col-sm-6">
+			<ul>
+				<li> The classic plot conditions on a fixed input tree, which is assumed to be correct. </li>
+				 <!-- MCMC -->
+				<li class="fragment"> Bayesian skyline (and skygrid) averages aver all plausible trees, making estimates of uncertainty readily availiable. </li>
+				<li class="fragment"> Provides estimates of $ N_{e}\tau$ plus HPD confidence interval.
+					<ul>
+						<li> <font size=5.5>
+							$\tau$ is a mutation rate parameter (scales the tree from units of mutations
+							per site to units of time).
+              </font>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>
+
+
+<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+	<h3>Bayesian skyride plot <a>[Minin et al., 2008]</a></h3>
+<div class="row">
+	<div class="col-sm-6">
+	<a class="stretch"><img src="images/bayesian_skyride1.png"></a>
+	</div>
+	<div class="col-sm-6">
+		<ul>
+			<li> Skyline models assume that $N_{e}\tau$ can change their value at the end of each interval. </li>
+		  <li class="fragment"> Skyride model assumes that $N_{e}\tau$ changes continuously through time.   </li>
+			<!-- Given observations at some locations GMRF makes statements about the values at unobserved locations -->
+		 	<li class="fragment"> Change in $N_{e}\tau$ are modelled using a
+				<a href="https://en.wikipedia.org/wiki/Markov_random_field#Gaussian_Markov_random_field">
+					Gaussian Markov random field (GMRF)
+				</a>
+				model.
+			</li>
+		</ul>
+	</div>
+</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<section data-background="images/overImg.png" data-background-transition="none">
+				<!-- very happy  to answer all questions you might have -->
+				<h2>Thank you!</h2>
+				<h2><font color="#df8f09"> Questions?</font></h2>
+			</section>
+
+		</div>
+	</div>
+
+	<script src="../reveal/lib/js/head.min.js"></script>
+	<script src="../reveal/js/reveal.min.js"></script>
+	<script src="../reveal/js/config.js"></script>
+
+</body>
+
+</html>
