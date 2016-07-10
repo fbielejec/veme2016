@@ -5,3 +5,4 @@
  USAGE
  ----- 
   Point your browser to index.html
+  Also http://fbielejec.github.io/veme2016

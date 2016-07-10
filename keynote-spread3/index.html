@@ -48,13 +48,18 @@
 				<!-- <p>March 17, 2016 -->
 			</section>
 
-			<section data-background="images/overImg.png" data-background-transition="none" data-transition="convex">
+			<section data-background="images/overImg.png" data-background-transition="none" data-transition="slide">
 				<h3>Cuban Bioinformatics Workshop on</h3>
         <h4>Virus Evolution and Molecular Epidemiology</h4>
 				<br>
-				<span> Slides availiable at:</span>
+				<span> Slides can be downloaded from:</span>
 				<br>
 				<a href="https://github.com/fbielejec/veme2016"> https://github.com/fbielejec/veme2016</a>
+				<br>
+					<br>
+				<span> Slides are also availiable online:</span>
+				<br>
+				<a href="http://fbielejec.github.io/veme2016"> http://fbielejec.github.io/veme2016</a>
 			</section>
 
 			<!-- this is the application which I'll be talking about today  -->
@@ -165,7 +170,7 @@
 							<div class="row">
 
 									<div class="col-sm-12">
-								   	<a class="stretch"><img src="images/phylogeography.png" style="width: 50%; height: 50%;"></a>
+								   	<a class="stretch"><img src="images/phylogeography.png" style="width: 80%; height: 80%;"></a>
 									</div>
 
 								<div class="col-sm-12">
@@ -192,13 +197,13 @@
 
 			<section data-background="images/overImg.png" data-background-transition="none">
 				<h3>Annotations</h3>
-				<img src="images/figtree_geo.png" style="width: 50%; height: 50%;">
+				<img src="images/figtree_geo.png" style="width: 65%; height: 65%;">
 				<br>
 				<ul>
-					<li> Tip branches labelled according to the names of the locations. </li>
-					<li class="fragment"> Most appropriate when the geographic complexity is low. </li>
-					<li class="fragment"> Prioritizes the visualisation of the tree over the spatial process. </li>
-					<li class="fragment"> Software: <a href="https://github.com/rambaut/figtree">Figtree</a>.</li>
+					<li> <font size=5> Tip branches labelled according to the names of the locations. </font> </li>
+					<li class="fragment"> <font size=5> Most appropriate when the geographic complexity is low. </font>  </li>
+					<li class="fragment"> <font size=5> Prioritizes the visualisation of the tree over the spatial process. </font>  </li>
+					<li class="fragment"> <font size=5> Software: <a href="https://github.com/rambaut/figtree">Figtree</a>. </font>  </li>
 				</ul>
 			</section>
 
@@ -217,15 +222,15 @@ persal history. -->
 
 <section data-background="images/overImg.png" data-background-transition="none">
 	<h3>Tangle-maps</h3>
-	<img src="images/tanglemaps.png" style="width: 45%; height: 45%;">
+	<img src="images/tanglemaps.png" style="width: 50%; height: 50%;">
 	<br>
 	<ul>
 		<!--  tree tips related to geographic locations -->
-		<li> Term made by analogy to tangle-graphs. </li>
+		<li> <font size=5> Term made by analogy to tangle-graphs. </font>  </li>
 		<!-- try to shoe relation between tree na dmap -->
-		<li class="fragment"> Combines cartographic maps with images of trees. </li>
+		<li class="fragment"> <font size=5> Combines cartographic maps with images of trees. </font>  </li>
 		<!-- The tree is merely overlaid on the map with little insight into dispersal history. -->
-		<li class="fragment"> Software: <a href="http://kiwi.cs.dal.ca/GenGIS/Main_Page">GenGIS</a> </li>
+		<li class="fragment"> <font size=5> Software: <a href="http://kiwi.cs.dal.ca/GenGIS/Main_Page">GenGIS</a> </font> </li>
 	</ul>
 
 </section>
@@ -235,7 +240,7 @@ persal history. -->
 <!-- GEOPHYLOGENIES -->
 <section data-background="images/overImg.png" data-background-transition="none">
 	<h3>Geophylogenies</h3>
-	<img src="images/geophylogeny.jpg" style="width: 45%; height: 45%;">
+	<a class="stretch"><img src="images/geophylogeny.jpg" style="width: 75%; height: 75%;"></a>
 	<br>
 	<ul>
 		<li> The tree becomes part of the map by making it's projection. </li>
@@ -309,8 +314,15 @@ persal history. -->
 
 <!-- discrete (markov chain) -->
 <section data-background="images/overImg.png" data-background-transition="none">
+	<h3>Discrete phylogenetic diffusion</h3>
+	<img src="images/discrete1.png" style="width: 100%; height: 100%;">
+</section>
+
+
+
+<section data-background="images/overImg.png" data-background-transition="none">
 	<h3>SpreaD3 - visualizing discrete diffusion</h3>
-	<img src="images/discrete.png" style="width: 45%; height: 45%;">
+	<img src="images/discrete.png" style="width: 65%; height: 65%;">
 	<br>
 	<ul>
 	 <li> Each state is a point location. </li>
@@ -320,6 +332,10 @@ persal history. -->
 	</ul>
 </section>
 
+
+
+
+
 <section data-background="images/overImg.png" data-background-transition="none">
 			<h2> <font color="#ff6347">#1 rule</font> of presentation: never do a live demo.</h2>
 		</section>
@@ -327,6 +343,12 @@ persal history. -->
 		<section data-background="images/overImg.png" data-background-transition="none">
 				<h1> <font color="#ff6347"> LIVE DEMO! </font></h1>
         <h3>  Results at: <a href="http://phylogeography.github.io/SpreaD3/">phylogeography.github.io/SpreaD3/</a> </h3>
+			</section>
+
+
+			<section data-background="images/overImg.png" data-background-transition="none">
+				<h3>Continuous phylogenetic diffusion</h3>
+				<img src="images/continuous1.png" style="width: 100%; height: 100%;">
 			</section>
 
 
@@ -344,7 +366,7 @@ can be used to build a credible contour through kernel density esti-
 mation. -->
 <section data-background="images/overImg.png" data-background-transition="none">
 	<h3>SpreaD3 - vizualizing continuous phylogenetic diffusion</h3>
-	<img src="images/continuous.png" style="width: 45%; height: 45%;">
+	<img src="images/continuous.png" style="width: 60%; height: 60%;">
 	<br>
 	<ul>
 <!-- single tree can be projected but more importantly -->
@@ -365,34 +387,31 @@ mation. -->
 	<!-- BUTT -->
 	<section data-background="images/overImg.png" data-background-transition="none">
 		<h3>But there's more!</h3>
-		<img src="images/rhinos.jpg" style="width: 45%; height: 45%;">
+		<img src="images/rhinos.jpg" style="width: 55%; height: 55%;">
 		<br>
 	</section>
 
 
 	<section data-background="images/overImg.png" data-background-transition="none">
-		<!-- <h3>But there's more!</h3> -->
+		<h3>Support for animated 3D projections in <a href="http://earth.google.com">GoogleEarth</a> </h3>
 		<br>
-						<img src="images/googleearth.png" style="width: 60%; height: 60%;">
+						<img src="images/googleearth.png" style="width: 80%; height: 80%;">
 									<h4>Influenza A H5N1 data also used by Lemey et al. (2009)</h4>
-										<br>
-		<ul>
-		 <li> Support for animated 3D projections in <a href="http://earth.google.com">GoogleEarth</a> </li>
-		</ul>
 	</section>
 
 
 
 	<section data-background="images/overImg.png" data-background-transition="none">
-		<!-- <h3>But there's more!</h3> -->
+		<h3>Identifying well-supported rates of transmission</h3>
 		<br>
-						<img src="images/bf_circle.png" style="width: 45%; height: 45%;">
-									<h4>Influenza A H5N1 data also used by Lemey et al. (2009)</h4>
-										<br>
-		<ul>
-		 <li> Identifying well-supported rates of transmission. </li>
-		 		 <li> Bayes factors: how much the posterior (here the time spent by Markov chain in a state) deviates from the prior beliefs. </li>
-		</ul>
+						<img src="images/bf_circle.png" style="width: 60%; height: 60%;">
+									<!-- <h4>Influenza A H5N1 data also used by Lemey et al. (2009)</h4> -->
+										<!-- <br> -->
+		 		 <p> <font size=5><a href="https://en.wikipedia.org/wiki/Bayes_factor">Bayes factors</a>: how much the posterior
+					 <!-- (here the time spent by Markov chain in a state) -->
+					 deviates from the prior beliefs.
+</font>
+				 </p>
 	</section>
 
 
@@ -402,21 +421,29 @@ mation. -->
 	When no underlying map is provided, SpreaD3 simply draws a bounding box around the data points. The idea here is to visualise three
 	layers of uncertainty by combining the polygons of the 50%, 75% and 95% Highest Posterior Density interval. -->
 		<section data-background="images/overImg.png" data-background-transition="none">
-			<!-- <h3>But there's more!</h3> -->
+			<h3>Antigenic cartography</h3>
 			<br>
-							<img src="images/antigenic.png" style="width: 40%; height: 40%;">
-										<h4>Swine influenza A viruses dataset taken from Lewis et al. (2016)</h4>
-											<br>
-			<ul>
+							<a href="https://phylogeography.github.io/influenzaH1/">
+								<img src="images/antigenic.png" style="width: 50%; height: 50%;">
+</a>
+										<!-- <h4>Swine influenza A viruses dataset taken from Lewis et al. (2016)</h4> -->
+											<!-- <br> -->
+											<p> <font size=5>
+												 Antigenic coordinates measures how antigenically dissimilar virus strains are.
+												 <br>
+												 Swine influenza A viruses dataset, [Lewis et al. (2016)].
+						 </font>
+											</p>
+			<!-- <ul>
 			 <li> Not just geographic coordinates</li>
 			  <li> Antigenic coordinates measures how antigenically dissimilar virus strains are.</li>
-			</ul>
+			</ul> -->
 		</section>
 
 		<section data-background="images/overImg.png" data-background-transition="none">
 					<!-- <h2> TODO: github, open sourced, contributions welcomed, doesn't have to be coding!s</h2> -->
 					<h2>	SpreaD3 </h2>
-					<p>	<img src="images/spread.png" style="width: 10%; height: 10%;"/>  </p>
+					<p>	<img src="images/spread.png" style="width: 25%; height: 25%;"/>  </p>
 					<ul>
 					 <li> <font color="#df8f09">Get it</font>: <a href="http://rega.kuleuven.be/cev/ecv/software/SpreaD3">rega.kuleuven.be/cev/ecv/software/SpreaD3</a>   </li>
 					 <li> <font color="#df8f09">Fork it:</font> </li>
@@ -439,7 +466,11 @@ mation. -->
 <!-- TODO: imp -->
 
 
-
+<section data-background="none" data-background-transition="none">
+	<!-- very happy  to answer all questions you might have -->
+	<h2>Thank you!</h2>
+	<h2><font color="#df8f09"> Questions?</font></h2>
+</section>
 
 
 

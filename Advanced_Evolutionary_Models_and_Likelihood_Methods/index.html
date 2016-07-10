@@ -42,18 +42,41 @@
 				<h3>Cuban Bioinformatics Workshop on</h3>
         <h4>Virus Evolution and Molecular Epidemiology</h4>
 				<br>
-				<span> Slides for the lectures availiable at:</span>
+				<span> Slides can be downloaded from:</span>
 				<br>
 				<a href="https://github.com/fbielejec/veme2016"> https://github.com/fbielejec/veme2016</a>
+				<br>
+					<br>
+				<span> Slides are also availiable online:</span>
+				<br>
+				<a href="http://fbielejec.github.io/veme2016"> http://fbielejec.github.io/veme2016</a>
 			</section>
 
+<section data-background="none" data-background-transition="none">
+<h2>Molecular evolution</h2>
+<p>The process of random change in the sequence composition of cellular molecules, such as DNA, over time.</p>
+	<!-- <h2>
+		<font color="#df8f09">Molecular evolution</font> -
+		<i>The process of random change in the sequence composition of cellular molecules, such as DNA, over time.</i>
+	</h2> -->
+</section>
+
+
+
+ <!-- time sequence representing the evolution of some system
+ represented by a variable whose change is subject to a random variation -->
 			<section data-background="none" data-background-transition="none">
-				<h2>Evolution as a stochastic process</h2>
+				<h2>Stochastic process</h2>
 				<p>
-					The stochastic process $X$ is a collection $\left\{ X(t):\; t\in T\right\} $, where each value $X(t)$ is a random variable drawn from state space $\mathcal{E}$, with $K$ possible values, indexed by orderer time $T$.
+					The stochastic process $X$ is a collection $\left\{ X(t):\; t\in T\right\} $,
+					where each value $X(t)$ is a random variable drawn from a discrete state space $\mathcal{E}$,
+					with $K$ possible values, indexed by orderer time $T$.
 				</p>
 			</section>
 
+			<section data-background="#cce8cf" data-background-transition="none">
+				<h2>Evolution as a stochastic process</h2>
+			</section>
 
 			<section data-background="none" data-background-transition="none" data-transition="none">
 <img src="images/t0.png">
@@ -74,6 +97,11 @@
 		<img src="images/t4.png">
 			</section>
 
+			<section data-background="none" data-background-transition="none">
+				<h2>Phylogenetic tree</h2>
+				<p>Directed, bifurcating graph depicting relationship.</p>
+						<a class="stretch"><img src="images/tree.png" style="width: 55%; height: 55%;"></a>
+			</section>
 
 			<section data-background="none" data-background-transition="none" data-transition="slide">
 				<h3>Phylogenetic tree implies a <font color="#df8f09">character substitution process</font> leading to observed tip states</h3>
@@ -189,7 +217,8 @@
 				<h3>Example: JC69 substitution model</h3>
 
 				<ul>
-					<li> The simplest model of nucleotide substitution [Jukes and Cantor, 1969]
+					<li> The simplest model of nucleotide substitution
+						<a href="http://garfield.library.upenn.edu/classics1990/A1990CZ67100002.pdf">[Jukes and Cantor, 1969]</a>
 					</li>
 					<li> Transition probabilities are given by: $p_{ij}\left(t\right)=\begin{cases} \frac{1}{4}+\frac{3}{4}e^{-4rt} & \text{if }i=j\\ \frac{1}{4}-\frac{1}{4}e^{-4rt} & \text{otherwise} \end{cases}$
 					</li>
@@ -471,7 +500,7 @@ trees and compute their likelihoods.
 
 <!-- likelihood diff had unknown distribution -->
 <p>
-	Two different topologies are not nested, thus, we cannot use the$\chi^{2}$ distribution.
+	Two different topologies are not nested, thus, we cannot use the $\chi^{2}$ distribution.
 </p>
 
 <p class="fragment">

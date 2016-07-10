@@ -12,6 +12,8 @@ require(reshape2)
 paths = 1
 N = 50
 
+rate = 10
+
 colorBeta <- rgb(252, 141, 98, maxColorValue = 255, alpha = 255)  
 colorAlpha <- rgb(141, 160, 203, maxColorValue = 255, alpha = 255)  
 
@@ -27,7 +29,7 @@ for(j in 1 : paths) {
   )
   
   data$x[1] = 0
-  data$xend[1] = rexp(1)
+  data$xend[1] = rexp(1, rate = rate)
   
   data$y[1] = sample(c("A", "C", "G", "T"), size = 1)
   data$yend = data$y
@@ -37,7 +39,7 @@ for(j in 1 : paths) {
   for(i in ids) {
     
     char = sample(c("A", "C", "G", "T"), size = 1)
-    time = rexp(1)
+    time = rexp(1, rate = rate)
     
     data$x[i + 1] = data$xend[i]
     data$xend[i + 1] = data$x[i + 1]
