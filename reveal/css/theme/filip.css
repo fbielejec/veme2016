@@ -15,7 +15,8 @@
  * GLOBAL STYLES
  *********************************************/
 body {
-  background-color: white; }
+  background-color: white;
+}
 
 .reveal {
   font-family: "Lato", sans-serif;
@@ -80,11 +81,13 @@ body {
   -moz-transition: color .15s ease;
   -ms-transition: color .15s ease;
   -o-transition: color .15s ease;
-  transition: color .15s ease; }
+  transition: color .15s ease;
+}
 
 .reveal a:not(.image):hover {
   color: #aaa;
-  border: none; }
+  border: none;
+}
 
 .reveal .roll span:after {
   color: #aaa;
