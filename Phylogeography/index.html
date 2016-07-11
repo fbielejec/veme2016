@@ -90,7 +90,8 @@ To do inference one needs a  probabilistic model that describes the process of c
 		</p>
 
 		<p class="fragment">
-	They are fully characterized by $K \times K$ rate matrix $\mathbf{Q}$, where $K$ denotes the \textbf{size of the discrete state space} $S$.
+	They are fully characterized by $K \times K$ rate matrix $\mathbf{Q}$, where $K$ denotes the size of the discrete
+	state space $S$.
 		</p>
 
 	</div>
@@ -200,6 +201,7 @@ To do inference one needs a  probabilistic model that describes the process of c
   <br>
 
 	<p>
+		<font size=5>
 $P\left(\mathbf{F},\mathbf{Q},\mathbf{\Phi}|\mathbf{X},\mathbf{Y}\right)\approx$
 
 		$\underbrace{P(\mathbf{X}|\mathbf{Q},\mathbf{F})}_{\begin{array}{c}
@@ -223,6 +225,7 @@ $P\left(\mathbf{F},\mathbf{Q},\mathbf{\Phi}|\mathbf{X},\mathbf{Y}\right)\approx$
 \text{prior}
 }
 \end{array}}$
+		</font>
 	</p>
 <br>
 <p>
@@ -236,7 +239,7 @@ $P\left(\mathbf{F},\mathbf{Q},\mathbf{\Phi}|\mathbf{X},\mathbf{Y}\right)\approx$
 <section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
 	<h3>Discrete diffusion models</h3>
   <br>
-	<a class="stretch"><img src="images/diffusion_models1.png" style="width: 45%; height: 45%;"></a>
+	<a class="stretch"><img src="images/diffusion_models1.png" style="width: 65%; height: 65%;"></a>
 
 	<ul>
 	  <li>The entries of the transition matrix $\mathbf{\Phi}$ are the transition rates $\phi_{ij}$ between locations $i$ and $j$.</li>
@@ -251,7 +254,7 @@ $P\left(\mathbf{F},\mathbf{Q},\mathbf{\Phi}|\mathbf{X},\mathbf{Y}\right)\approx$
 <section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
 	<h3>Location exchange rate priors</h3>
   <br>
-	<a class="stretch"><img src="images/diffusion_models2.png" style="width: 45%; height: 45%;"></a>
+	<a class="stretch"><img src="images/diffusion_models2.png" style="width: 55%; height: 55%;"></a>
 
 	<ul>
 		<li>Rates in $\mathbf{\Phi}$ are <i>a priori</i> independent and <a href="https://en.wikipedia.org/wiki/Gamma_distribution">Gamma distributed</a> (strictly positive).</li>
@@ -264,7 +267,7 @@ $P\left(\mathbf{F},\mathbf{Q},\mathbf{\Phi}|\mathbf{X},\mathbf{Y}\right)\approx$
 <section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
 	<h3>Do we need all those location parameters?</h3>
   <br>
-	<a class="stretch"><img src="images/diffusion_models3.png" style="width: 45%; height: 45%;"></a>
+	<a class="stretch"><img src="images/diffusion_models3.png" style="width: 65%; height: 65%;"></a>
 
 	<ul>
 		<!-- one observation per tip! -->
@@ -278,7 +281,7 @@ $P\left(\mathbf{F},\mathbf{Q},\mathbf{\Phi}|\mathbf{X},\mathbf{Y}\right)\approx$
 <section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
 	<h3>Bayesian stochastic search variable selection [Cybis et al. 2013]</h3>
   <br>
-	<a class="stretch"><img src="images/diffusion_models4.png" style="width: 45%; height: 45%;"></a>
+	<a class="stretch"><img src="images/diffusion_models4.png" style="width: 50%; height: 50%;"></a>
 
 	<ul>
 		<!-- in the limit the sum of independent bernoulli RVs are poisson distributed -->
@@ -294,7 +297,7 @@ $P\left(\mathbf{F},\mathbf{Q},\mathbf{\Phi}|\mathbf{X},\mathbf{Y}\right)\approx$
 <section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
 	<h3> Bayes factors (BF) </h3>
   <br>
-	<a class="stretch"><img src="images/diffusion_models5.png" style="width: 45%; height: 45%;"></a>
+	<a class="stretch"><img src="images/diffusion_models5.png" style="width: 50%; height: 50%;"></a>
 
 	<ul>
 		<li> MCMC exploration of the $I_{[0,1]}$ indicators parameter space has an interesting by-product.</li>
@@ -308,10 +311,11 @@ $P\left(\mathbf{F},\mathbf{Q},\mathbf{\Phi}|\mathbf{X},\mathbf{Y}\right)\approx$
 <section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
 	<h3> Bayes factors </h3>
   <br>
-	<a class="stretch"><img src="images/bf_map.png" style="width: 45%; height: 45%;"></a>
+	<a class="stretch"><img src="images/bf_map.png" style="width: 65%; height: 65%;"></a>
 
 	<ul>
-		<li><a href="https://github.com/phylogeography/SpreaD3">SpreaD3</a> (Bielejec, et al. [2016]) identifies and vizualises well-supported rates through Bayes factor tests. </li>
+		<li><a href="https://github.com/phylogeography/SpreaD3">SpreaD3</a> (Bielejec, et al. [2016]) identifies and
+			vizualises well-supported rates through Bayes factor tests. </li>
 	</ul>
 
 </section>
