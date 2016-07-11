@@ -27,20 +27,25 @@ a:not(.image):hover {
 .container {
     width: 100%;
     height: 100%%;
-    /*height: auto;
-    min-height: 100%;*/
     font-family: "Lato", sans-serif;
     font-size: 31px;
     font-weight: 300;
     color: #333333;
 }
 
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: black;
-    color: #8bc34a;
+    background: #364b64;
+    color: white;
+    /*color: #8bc34a;*/
     padding: 10px;
 }
 
@@ -48,7 +53,7 @@ a:not(.image):hover {
     position: absolute;
     height: 100%;
     width: 100%;
-    background-color: #cce8cf;
+    background-color: white;
     /*background: url('../images/pattern.svg') no-repeat;*/
     background-size: 100% 100%;
     padding: 10px;
