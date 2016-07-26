@@ -39,26 +39,49 @@
 				<p><a href="https://www.kuleuven.be/english">KU Leuven</a></p>
 			</section>
 
+			<section data-background="images/overImg.png" data-background-transition="none" data-transition="convex">
+				<h3>About me</h3>
+				<br>
+				<ul>
+					<li>Studied Applied Mathematics at <a href="http://www.p.lodz.pl/en">Lodz University of Technology</a></li>
+					<li>Postdoctoral researcher at the lab of <a href="http://rega.kuleuven.be/cev/ecv/lab-members/PhilippeLemey.html">Philippe Lemey</a></li>
+					<li>Enthusiast of data visualization, parallel and distributed computing</li>
+					<li>Author of <a href="http://rega.kuleuven.be/cev/ecv/software/pibuss">πBUSS</a>,
+						<a href="https://rega.kuleuven.be/cev/ecv/tutorials/tree-imp-tutorial">Imp</a> and
+						<a href="http://rega.kuleuven.be/cev/ecv/software/SpreaD3">SpreaD3</a> </li>
+				</ul>
+			</section>
+
 			<section data-background="#cce8cf" data-background-transition="none" data-transition="slide">
 				<h3>Cuban Bioinformatics Workshop on</h3>
-        <h4>Virus Evolution and Molecular Epidemiology</h4>
+				<h4>Virus Evolution and Molecular Epidemiology</h4>
 				<br>
-				<span> Slides for the lectures availiable at:</span>
+				<span> Slides can be downloaded from:</span>
 				<br>
 				<a href="https://github.com/fbielejec/veme2016"> https://github.com/fbielejec/veme2016</a>
+				<br>
+					<br>
+				<span> Slides are also availiable online:</span>
+				<br>
+				<a href="https://fbielejec.github.io/veme2016"> http://fbielejec.github.io/veme2016</a>
 			</section>
+
 
 		<section data-background="#cce8cf" data-background-transition="none" data-transition="none">
 				<h2>Phylogenetics</h2>
 			</section>
 
+			<section data-background="none" data-background-transition="none">
+			<h2>Molecular evolution</h2>
+			<p>The process of random change in the sequence composition of cellular molecules, such as DNA, over time.</p>
+			</section>
+
+			<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+				<h3>Observed data</h3>
+				<img class="stretch" src="images/observed.png">
+			</section>
+
 <!-- tree  -->
-
-<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
-	<h3>Observed data</h3>
-	<img class="stretch" src="images/observed.png">
-</section>
-
 <section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
 		 <!-- directed acyclic graph -->
 	 <!-- tree is a hypothesis based on observed data -->
@@ -66,36 +89,189 @@
 	<img class="stretch" src="images/tree1.png">
 </section>
 
+
+
 <section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
 	<!-- series of mutation events leads to the observed data -->
 	<h3>Mutation events generate observed data</h3>
 	<img class="stretch" src="images/tree2.png">
 </section>
 
+<section data-background="#cce8cf" data-background-transition="none">
+	<h2>Evolution as a stochastic process</h2>
+</section>
 
-<!-- substitution model -->
+<section data-background="none" data-background-transition="none" data-transition="none">
+<img src="images/t0.png">
+</section>
+
+
+<section data-background="none" data-background-transition="none" data-transition="none">
+<img src="images/t2.png">
+</section>
+
+
+<section data-background="none" data-background-transition="none" data-transition="none">
+<img src="images/t3.png">
+</section>
+
+
+<section data-background="none" data-background-transition="none" data-transition="none">
+<img src="images/t4.png">
+</section>
+
 
 <section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
 	<h3>Substitution models</h3>
-<div class="row">
-	<div class="col-sm-6">
-		<a class="stretch"><img src="images/substitution.png"></a>
+	<div class="row">
+			<div class="col-sm-6" style="">
+				<br>
+				<br>
+				<!-- <br> -->
+<font size=5>
+			<!-- <a class="stretch"><img src="images/substitution.png"></a> -->
+			<!-- $\mathbf{P}(t)=$ -->
+			<!-- <br> -->
+			$\left[\begin{array}{cccc} A\rightarrow A & {\color{red}A\color{red}\rightarrow \color{red}C} & {\color{green}A\color{green}\rightarrow
+				\color{green}G} & {\color{blue}A\color{blue}\rightarrow \color{blue}T}\\ {\color{red}C\color{red}\rightarrow \color{red}A} & C\rightarrow C & {\color{cyan}C\color{cyan}\rightarrow \color{cyan}G} & {\color{magenta}C\color{magenta}\rightarrow \color{magenta}T}\\
+				{\color{green}G\color{green}\rightarrow \color{green}A} & {\color{cyan}G\color{cyan}\rightarrow \color{cyan}C} & G\rightarrow G & {\color{yellow}G\color{yellow}\rightarrow \color{yellow}T}\\ {\color{blue}T\color{blue}\rightarrow \color{blue}A} &
+				{\color{magenta}T\color{magenta}\rightarrow \color{magenta}C} & {\color{yellow}T\color{yellow}\rightarrow \color{yellow}G} & T\rightarrow T \end{array}\right]$
+</font>
+
+		</div>
+		<div class="col-sm-6">
+			<font size=5>
+			<ul>
+				<li>Continuous Time Markov Chain (CTMC) models describe character substitutions at particular site in the alignment.</li>
+			</ul>
+			<ul class="fragment">
+				<li>Characterized by $K \times K$ rate matrix $\mathbf{Q}$.</li>
+				<li>
+					Finite-time transition probability matrix $\mathbf{P}$ is obtained via matrix exponentiation: $P(t)=e^{Qt}=\underset{n=0}{\overset{\infty}{\sum}}Q^{n}\frac{t^{n}}{n!}$.</li>
+				<li>
+					Single entry is a conditional probability:
+					<!-- <font size=5> -->
+				${\color{red}A\color{red}\rightarrow \color{red}C}:\quad \forall u\geq 0 \quad p_{AC}(t)=P\left\{ X\left(t+u\right)=C\mid X(u)=A\right\}$.
+<!-- </font> -->
+				</li>
+			</ul>
+			</font>
+		</div>
 	</div>
-	<div class="col-sm-6">
-		<ul>
-			<li>Continuous Time Markov Chain (CTMC) models describe character substitutions at particular site in the alignment.</li>
-			<li class="fragment">Characterized by $K \times K$ rate matrix $\mathbf{Q}$.</li>
-			<li class="fragment">Finite-time transition probability matrix $\mathbf{P}$ is obtained via matrix exponentiation: $P(t)=e^{Qt}=\underset{n=0}{\overset{\infty}{\sum}}Q^{n}\frac{t^{n}}{n!}$.</li>
-		</ul>
-	</div>
-</div>
 </section>
 
-<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+<section data-background="images/overImg.png" data-background-transition="none">
+	<h3>Continuous time Markov chain models</h3>
+	<div class="row">
+
+		<div class="row">
+			<div class="col-sm-6">
+				<a class="stretch"><img src="images/ctmc.png"></a>
+			</div>
+			<div class="col-sm-6">
+				<h4>CTMC is a stochastic process of sequential transitions from one state to another, within an allowed set of states
+		$X(t_{0})\rightarrow X(t_{1})\rightarrow\ldots\rightarrow X(t_{n})\rightarrow\ldots$
+	</h4>
+			</div>
+		</div>
+
+		<div class="col-sm-12">
+			<h4><span>Simplifying assumptions:</span></h4>
+			<ul>
+
+				<li>Markov property:
+					<font size=5>$P\left\{ X(t_{n+1}) = i_{n+1}\mid X(t_{n})=i_{n},\ldots, X(t_{0})=i_{0}\right\} = P\left\{ X(t_{n+1}) = i_{n+1}\mid X(t_{n})=i_{n}\right\}$</font>
+				</li>
+
+				<li class="fragment">
+					Homogeneity: $\forall i,j\in \mathcal{E} \quad p_{ij}\left(t\right) = p_{ij}\left(0,t\right) = p_{ij}\left(u,t+u\right)$
+				</li>
+
+				<li class="fragment">
+					Stationarity: $\forall j\in\mathcal{E} \quad \exists\pi_{j}>0 \quad \forall i\in\mathcal{E}\quad\underset{t\rightarrow\infty}{lim}p_{ij}(t)=\pi_{j}$
+				</li>
+
+				<li class="fragment">
+					Time-reversibility: $\forall i,j\in \mathcal{E} \quad \pi_{i}p_{ij}(t)=\pi_{j}p_{ji}(t)$
+				</li>
+
+			</ul>
+		</div>
+
+	</div>
+</section>
+
+<section data-background="none" data-background-transition="none" data-transition="slide">
+	<h3>Example: JC69 substitution model</h3>
+
+	<ul>
+		<li> The simplest model of nucleotide substitution
+			<a href="http://garfield.library.upenn.edu/classics1990/A1990CZ67100002.pdf">[Jukes and Cantor, 1969]</a>
+		</li>
+		<li> Transition probabilities are given by: $p_{ij}\left(t\right)=\begin{cases}
+			\frac{1}{4}+\frac{3}{4}e^{-4\theta t} & \text{if }i=j\\ \frac{1}{4}-\frac{1}{4}e^{-4 \theta t} & \text{otherwise}
+			\end{cases}$
+		</li>
+	</ul>
+</section>
+
+<section data-background="none" data-background-transition="none" data-transition="slide">
+	<h3>Example: JC69 substitution model</h3>
+
+	<p>
+		<!-- Transition probabilities are given by:  -->
+		$p_{ij}\left(t\right)=\begin{cases}
+		\frac{1}{4}+\frac{3}{4}e^{-4\theta t} & \text{if }i=j\\ \frac{1}{4}-\frac{1}{4}e^{-4 \theta t} & \text{otherwise}
+		\end{cases}$
+	</p>
+
+	<ul>
+		<li> Let's assume the state is $G$ now. </li>
+		<li> What is the probability the state will change to $T$ in $0.01$ units of time? Or 0.05? or 0.1? </li>
+				<li> What happens if we change the initial state distribution? </li>
+				<li class="fragment">	<font color="#df8f09">Let's see!</font></li>
+	</ul>
+	<br>
+	<!-- <ul class="fragment">
+		<li>
+			Because of the homogeneity assumption it is not neccessary to run the chain sequentially through all iterations to predict a state in the future.
+		</li>
+		<li> We can predict the n-th iteration by raising the transition matrix $P$ to the n-th power and multiplying the result by the distribution of the initial state $\mathbf{\Pi}^{0}$:
+			<br> $P\left\{ X\left(t_{n}\right)\right\} =\mathbf{\Pi}^{0}\times P^{n}$
+		</li>
+	</ul> -->
+</section>
+
+
+<!-- https://theclevermachine.wordpress.com/tag/markov-chain/ -->
+<section data-background="images/overImg.png" data-background-transition="none">
+	<h4><span>Example: JC69 substitution model</span></h4>
+	<div class="row">
+		<div class="col-md-12">
+			<a class="stretch"><img style="max-width:50%; max-height:50%;" src="images/jc69.png"></a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<ul>
+				<li> Here we see that at time $0.025$ the probability of $T$ is $\approx21\%$ </li>
+				<li> After approx time $0.05$ the chain reaches its stationary distribution: </li>
+				<li> $\mathbf{\Pi}=\left\{ \pi_{T}=0.25,\pi_{C}=0.25,\pi_{A}=0.25,\pi_{G}=0.25\right\}$ </li>
+				<!-- <li> What happens if we change the initial state distribution? <font color="#df8f09">See the R script.</font></li> -->
+			</ul>
+		</div>
+	</div>
+</section>
+
+
+<!-- <section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
 	<h3>Fabricating evolution</h3>
 	<img class="stretch" src="images/simulating.png">
-</section>
+</section> -->
 
+<section data-background="#cce8cf" data-background-transition="none" data-transition="slide">
+	<h3>Maximum Likelihood (ML) approach</h3>
+</section>
 
 <!-- likelihood concept-->
 <section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
@@ -115,33 +291,55 @@ is called the likelihood function and denoted $\mathrm{L}(\theta \, | \, D)$.
 </p>
 </section>
 
-<!-- coin tosses -->
-<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
-	<h3>Maximum likelihood inference</h3>
-	<br>
-			<p>
-Let us consider a coin with head and tail, which is flipped $10$ times, and lands on it's head $8$ times. How to model the probability of such an outcome?
-</p>
-
-<p class="fragment">
-	Data: $D=\left(k=8,n=10\right)$.
-</p>
-
-<p class="fragment">
-	Parameter: probability $\theta$ of landing a head.
-</p>
-
-<p class="fragment">
-	Likelihood: given by the <a href="https://en.wikipedia.org/wiki/Binomial_distribution">Binomial distribution</a>:
-	$$\mathrm{L}(\theta  \, | \, k,n) = \left(\begin{array}{c}
-\begin{array}{c}
-n\\
-k
-\end{array}\end{array}\right)
-  \, \theta^k \, (1-\theta)^{n-k}.$$
-</p>
-
+<section data-background="none" data-background-transition="none" data-transition="slide">
+	<h3>Maximum Likelihood Estimate</h3>
+	<p>
+		Likelihood is a function of parameter $\theta$:
+		<br> $\mathrm{Pr}(D \, | \, \theta)=\mathrm{L}(\theta \, | \, D)$
+	</p>
+	<p class="fragment">
+		To maximize the likelihood means to find a best parameter $\hat{\theta}$ which maximizes $\mathrm{L}(\theta \, | \, D)$. Such a parameter is then called the Maximum Likelihood Estimate (MLE).
+	</p>
 </section>
+
+
+
+<!-- coin tosses -->
+<section data-background="none" data-background-transition="none" data-transition="slide">
+	<h3>Example: Coin tosses</h3>
+	<p>
+		Let us consider a coin with head and tail, which is flipped $10$ times, and lands on it's head $8$ times:
+		<br> $H,H,H,T,H,H,H,H,H,T,H$
+	</p>
+	<p class="fragment">
+		How to model the probability of such an outcome?
+	</p>
+	<ul class="fragment">
+		<li> Data: $D=\left(k=8,n=10\right)$.</li>
+		<li> Parameter: probability $\theta$ of landing a head.</li>
+		<li class="fragment">
+			Likelihood: given by the <a href="https://en.wikipedia.org/wiki/Binomial_distribution">Binomial distribution</a>: $$\mathrm{L}(\theta \, | \, k,n) = \left(\begin{array}{c} \begin{array}{c} n\\ k \end{array}\end{array}\right) \, \theta^k \, (1-\theta)^{n-k}.$$
+			</li>
+	</ul>
+</section>
+
+
+<section data-background="none" data-background-transition="none" data-transition="none">
+	<h3>Example: Coin tosses</h3>
+	<br>
+	<img class="stretch" src="images/likelihood1.png">
+	<p>
+		<!-- analytically by taking the derivative, setting it equal to 0, solving for parameter -->
+		Curve presents the likelihood function for the coin tosses example: $\mathrm{L}(\theta \, | \, k=8,n=10)$.
+		Would you say the coin is fair?
+			</p>
+		<br>
+			<p>
+		<font color="#df8f09">To the R script!</font>
+		<!-- <br> The MLE: $\hat{\theta}=\frac{8}{10}=0.8$ -->
+	</p>
+</section>
+
 
 <section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
 	<h3>Maximum likelihood inference</h3>
@@ -161,21 +359,31 @@ k
 	<br>
 	<img class="stretch" src="images/likelihood2.png">
 			<p>
+				MLE maximizes likelihood function.
 				<!-- analytically by taking the derivative, setting it equal to 0, solving for parameter -->
-				${\displaystyle \log L(\theta\,|\, k,n)=\log\binom{n}{k}+x\log(\theta)+(n-k)\log(1-\theta)}$
-				${\displaystyle \frac{\partial\log L(\theta\,|\,8,10)}{\partial\theta}=\frac{8}{\theta}-\frac{10-8}{1-\theta}}=0\;\Longleftrightarrow\;\theta=0.8$
+				<!-- ${\displaystyle \log L(\theta\,|\, k,n)=\log\binom{n}{k}+x\log(\theta)+(n-k)\log(1-\theta)}$
+				${\displaystyle \frac{\partial\log L(\theta\,|\,8,10)}{\partial\theta}=\frac{8}{\theta}-\frac{10-8}{1-\theta}}=0\;\Longleftrightarrow\;\theta=0.8$ -->
 </p>
 </section>
 
-<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
-	<h3>Maximum likelihood inference</h3>
+<section data-background="#cce8cf" data-background-transition="none" data-transition="slide">
+	<h3>Maximum Likelihood in phylogenetics</h3>
+</section>
+
+<section data-background="none" data-background-transition="none" data-transition="slide">
+	<h3>Maximum Likelihood in phylogenetics</h3>
+	<p>In phylogenetic analysis, the parameter $\theta$ is <font color="#df8f09">multidimensional</font> and comprises:</p>
+	<ul>
+		<li>Parameters of the evolutionary model, possibly multiple.</li>
+				<li>Tree topology.</li>
+				<li>Branch lengths.</li>
+	</ul>
 	<br>
-	<!-- <img class="stretch" src="images/likelihood2.png"> -->
-	<p>
-		In phylogenetics, the data $D$ is the sequence alignment observed at the tips of the tree and the parameter $\Theta$ consists of
-		 the substitution model parameters $\theta$,
-		the phylogenetic tree topology $\tau$
-		and its branch lengths $b$.
+	<br>
+	<p class="fragment">
+		This makes ML a <font color="#df8f09">high dimensional optimization problem</font> that usually cannot be solved in one
+		go and instead a stepwise procedure is involved.
+		<!-- the model parameters are often determined separately from the tree. -->
 	</p>
 </section>
 
@@ -188,21 +396,24 @@ k
 			<a class="stretch"><img src="images/pruning.png"></a>
 		</div>
 		<div class="col-sm-6">
-
+<font size=5>
 			<p>
-Assumptions: After divergence characters evolve independently, sites evolve independently.
+<b>Assumptions:</b> After divergence characters evolve independently, sites evolve independently.
 			</p>
 
 			<p class="fragment">
-Inside brackets: probability of the data $TGAA$ observed at the tips and $x_{0}x_{1}x_{2}$ for the internal nodes.
+<b>Inside brackets:</b> probability of the data $TGAA$ observed at the tips and $x_{0}x_{1}x_{2}$ for the internal nodes.
+<br>
+<b>Outside brackets:</b> sum over all possible path combinations in the state space $\mathcal{E}$.
 			</p>
-
-			<p class="fragment">
-Outside brackets: sum over all possible path combinations in the state space $\mathcal{E}$.
-			</p>
-
+</font>
 		</div>
 	</div>
+<p>
+	<font size=5.5>
+$\underset{x_{0}\in\varepsilon}{\sum}\underset{x_{1}\in\varepsilon}{\sum}\underset{x_{2}\in\varepsilon}{\sum}[\pi_{x_{0}}\cdot p_{x_{0}T}(t_{0})\cdot p_{x_{0}x_{1}}(t_{1})\cdot p_{x_{1}x_{2}}(t_{2})\cdot p_{x_{1}A}(t_{3})\cdot p_{x_{2}G}(t_{5})\cdot p_{x_{2}A}(t_{4})]$
+</font>
+</p>
 </section>
 
 <section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
@@ -240,22 +451,25 @@ Computationaly intensive! Proceeds at $\mathcal{O}\left(K^{n-1}\right)$, where $
 			<a class="stretch"><img src="images/pruning2.png"></a>
 		</div>
 		<div class="col-sm-6">
-
+<font size=5>
 			<p>
-				Tree pruning [Felsenstein 1981]: recursive algorithm for calculating likelihood of a (observed) sequence on a tree.
+				Tree pruning <a>[Felsenstein 1981]</a>: recursive algorithm for calculating likelihood of a (observed) sequence on a tree.
 			</p>
-
+<br>
 				<p class="fragment">
 Partial likelihood $L_{i}(x_{i})$ of observing data at the descendants of node $i$ given state $x_{i}$ at node $i$ expressed in terms of partial likelihoods at nodes $j$ and $k$.
 			</p>
-
+<br>
 <!-- from polynomial to quadratic -->
 			<p class="fragment">
 				Proceeds at $\mathcal{O}\left(K^{2} \times n \right)$.
 		</p>
-
+</font>
 		</div>
 	</div>
+<p>
+$L_{i}(x_{i})=\left[\underset{x_{j}\in \varepsilon}{\sum}p_{x_{i}x_{j}}(t_{j})L_{j}(x_{j})\right]\times\left[\underset{x_{k}\in \varepsilon}{\sum}p_{x_{i}x_{k}}(t_{k})L_{k}(x_{k})\right]$
+	</p>
 </section>
 
 <!-- searching tree space -->
@@ -263,6 +477,39 @@ Partial likelihood $L_{i}(x_{i})$ of observing data at the descendants of node $
 	<!-- by tree we understand topology and branch lengths -->
 	<h3>What if the tree is not known?</h3>
 </section>
+
+
+<section data-background="none" data-background-transition="none" data-transition="none">
+	<h3>Finding branch lengths</h3>
+   <br>
+			<p>
+				Branch lengths $b$ can computed numerically by maximizing the log-likelihood of the whole alignment $X$,
+				which is a sum of the log-likelihoods at the particular sites:
+        $l(b | X,\tau)=\underset{j=1}{\overset{l}{\sum}}log\left(L(b | \mathbf{x}_{j},\tau)\right)$
+			</p>
+<br>
+<br>
+				<p class="fragment">
+					This means finding those branch lengths for tree $\tau$ which maximize the log-likelihood function.
+			  </p>
+</section>
+
+
+<section data-background="none" data-background-transition="none" data-transition="none">
+	<h3>Finding model parameters</h3>
+   <br>
+	 <ul>
+ 		<li>Model parameters $\Theta$ can be estimated similarly to estimating branch lengths.</li>
+ 		<li>Using the observed alignment and a fixed tree find the parameters which maximize the log-likelihood:
+<br>
+$l(\Theta|X,\tau,b)$
+		</li>
+ 	</ul>
+
+</section>
+
+
+
 
 <section data-background="none" data-background-transition="none" data-transition="none">
 	<h3>Searching through tree space</h3>
@@ -285,61 +532,12 @@ Impossible, but in the smallest cases
 </section>
 
 
-
-<!-- newton rhapson for branch lengths -->
-<section data-background="none" data-background-transition="none" data-transition="none">
-	<h3>Searching through tree space</h3>
-   <br>
-			<p>
-				Branch lengths $b$ can computed numerically by maximizing the log-likelihood of the whole alignment $X$,
-				which is a sum of the log-likelihoods at the particular sites:
-        $l(b | X,\tau)=\underset{j=1}{\overset{l}{\sum}}log\left(L(b | \mathbf{x}_{j},\tau)\right)$
-			</p>
-
-				<p class="fragment">
-					This means finding those branch lengths for tree $\tau$ which maximize the log-likelihood of observing the data $X$.
-			  </p>
-
-		 	<p class="fragment">
-        Accomplished by numerical routines like Newton-Raphson.
-	  	</p>
-
-</section>
-
-
-
-<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
-	<h3>Newton-Raphson (one dimension)</h3>
-   <br>
-			<p>
-				Let's apply the Newton Raphson method to find the parameter $\theta$ which maximizes the function:
-				$f(\theta)=\frac{e^{\theta}}{(1+e^{\theta})^{2}}$
-			</p>
-
-<p class="fragment">
-Method starts with a function $f$, the function's derivative $f'$ (gradient), second order derivative $f''$ (hessian) and an initial guess
-$\theta_{0}$ for the optimum of $f$.
-</p>
-
-<p class="fragment">
-	At every iteration:
-$\theta_{n+1}=\theta_{n}-\frac{f'\left(\theta_{n}\right)}{f''\left(\theta_{n}\right)}$
-until some convergence criteria is reached.
- </p>
-
-			<p class="fragment">
-<font color="#df8f09">Let's see it in action!</font>
-		</p>
-
-</section>
-
-
 <!-- summarize heuristic algs p 190 from the the book -->
 <section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
 	<h3>Searching through tree space</h3>
    <br>
 			<p>
-				Branch lengths can be computed numerically by maximizing the log-likelihood for a single tree.
+				<!-- Branch lengths can be computed numerically by maximizing the log-likelihood for a single tree. -->
 				The big task that remains is to actually find the tree among all possible tree topologies that maximizes the global likelihood.
 			</p>
 
@@ -366,7 +564,7 @@ until some convergence criteria is reached.
 <a class="stretch"><img src="images/stepwise_addition.png"></a>
 		</div>
 		<div class="col-sm-6">
-
+<font size=6>
 <!-- procedure starts from -->
 			<p>
 				Start from unrooted tree of 3 taxa, randomly selected from $n$, reconstruct corresponding ML sub-tree.
@@ -379,7 +577,7 @@ until some convergence criteria is reached.
 		 <p class="fragment">
 			 From the list of $2k-n$ trees, where $k$ is the number of added taxa, select the one which maximizes the likelihood.
 		</p>
-
+</font>
 		</div>
 	</div>
 </section>
@@ -429,7 +627,7 @@ until some convergence criteria is reached.
 			<p>
 		<font color="#df8f09">	Nearest neighbor interchange (NNI):</font>
 			Visits each branch, swapping a subtree connected to one end of the branch with a subtree connected to
-			the other end of the branch, resulting in two different topologies, compares th elikelihood to the original tree.
+			the other end of the branch, resulting in two different topologies, compares the likelihood to the original tree.
 			</p>
 </section>
 
@@ -493,35 +691,64 @@ trees and compute their likelihoods.
 <a class="stretch"><img src="images/lrt.png"></a>
 	</div>
 	<div class="col-sm-6">
+	<font size=5>
 		<p>
-			<font size=4>
 			If two models are nested (like TN in GTR), their log-likelihood difference $2\left(l\left(\text{GTR}\right)-l\left(\text{TN}\right)\right)$
 		follows a $\chi^{2}$ distribution with degrees of freedom equal to the number of additional
 		parameters ($df = 3$).
-	</font>
 		</p>
-
-		<p>
-			<font size=4>
-				If the observed value falls into
-				the extreme 5% interval (shaded
-				area), we say the more complex
-				model (GTR) is significatly
-				better than the simpler (TN).
-		</font>
-		</p>
-
-		<p>
-			<font size=4>
+<br>
+		<p class="fragment">
 				<font>$H_{0}$</font>: both models are equally good.
 				<br>
 				<font>$H_{A}$</font>: the more complex model is better.
-		</font>
 		</p>
-
+	</font>
 	</div>
 </div>
 </section>
+
+
+<section data-background="none" data-background-transition="none" data-transition="none">
+	<h3>Likelihood ratio test (LRT)</h3>
+	<div class="row">
+		<div class="col-sm-6">
+			<a class="stretch"><img src="images/lrt.png"></a>
+		</div>
+		<div class="col-sm-6">
+			<font size=5>
+		<p>
+				$H_{0}$: both models are equally good.
+			<br>
+			$H_{A}$: the more complex model is better.
+			</p>
+
+			<p>
+				We test <b>against the $H_{0}$.</b>
+			</p>
+
+			<p>
+				<a href="https://en.wikipedia.org/wiki/P-value">P-value</a>: expresses the probability of finding
+				a value of the test statistic which is equal to or even more extreme then the observed test statistic:
+				<br>
+				$P(\left|T\right| \geq t|H_{0})$
+        <br>
+				Indicates how unusual (how far in the tails) the observed result for the test statistic is:
+				<ul>
+					<li>$>0.1$ : not significant (accept $H_{0}$) </li>
+					<li>$0.05-0.10$ : $H_{A}$ is marginally significant</li>
+					<li>$0.01-0.05$ : $H_{A}$ is significant </li>
+					<li>$0.001-0.01$ : $H_{A}$ is strongly significant</li>
+					<li> $
+						< 0.001$ : $H_{A}$ is extremely significant </li>
+				</ul>
+			</p>
+
+			</font>
+		</div>
+	</div>
+</section>
+
 
 
 <section data-background="none" data-background-transition="none" data-transition="none">

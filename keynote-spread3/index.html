@@ -70,7 +70,7 @@
 					<li>Studied Applied Mathematics at <a href="http://www.p.lodz.pl/en">Lodz University of Technology</a></li>
 					<li>Postdoctoral researcher at the lab of <a href="http://rega.kuleuven.be/cev/ecv/lab-members/PhilippeLemey.html">Philippe Lemey</a></li>
 					<li>Enthusiast of data visualization, parallel and distributed computing</li>
-					<li>Other interests: electronics, climbing</li>
+					<!-- <li>Other interests: electronics, climbing</li> -->
 					<li>Author of <a href="http://rega.kuleuven.be/cev/ecv/software/pibuss">πBUSS</a>,
 						<a href="https://rega.kuleuven.be/cev/ecv/tutorials/tree-imp-tutorial">Imp</a> and
 						<a href="http://rega.kuleuven.be/cev/ecv/software/SpreaD3">SpreaD3</a> </li>
@@ -152,12 +152,15 @@
 			</section>
 
 			<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
-				<h3>Phylogeography [Avise, 2000]</h3>
+				<h3>Phylogeography <a>[Avise, 2000]</a></h3>
 			<div class="row">
 				<div class="col-sm-6">
 					<a class="stretch"><img src="images/phylogeography.jpg"></a>
 				</div>
 				<div class="col-sm-6">
+					<br>
+					<br>
+					<br>
 					<p>
 						Phylogeography connects evolutionary processes, which happen over time, with the processes of spatial dispersal into a joint spatio-temporal dynamic.
 					</p>
@@ -196,17 +199,16 @@
 
 
 			<section data-background="images/overImg.png" data-background-transition="none">
-				<h3>Annotations</h3>
+				<h3>Annotations (<a href="https://github.com/rambaut/figtree">Figtree</a>)</h3>
 				<img src="images/figtree_geo.png" style="width: 65%; height: 65%;">
 				<br>
 				<ul>
 					<li> <font size=5> Tip branches labelled according to the names of the locations. </font> </li>
 					<li class="fragment"> <font size=5> Most appropriate when the geographic complexity is low. </font>  </li>
 					<li class="fragment"> <font size=5> Prioritizes the visualisation of the tree over the spatial process. </font>  </li>
-					<li class="fragment"> <font size=5> Software: <a href="https://github.com/rambaut/figtree">Figtree</a>. </font>  </li>
+					<!-- <li class="fragment"> <font size=5> Software: <a href="https://github.com/rambaut/figtree">Figtree</a>. </font>  </li> -->
 				</ul>
 			</section>
-
 
 
 <!-- TANGLE-GRAPHS -->
@@ -256,7 +258,7 @@ persal history. -->
 </section>
 
 
-<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+<!-- <section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
 	<h3>BEAST - model based approach</h3>
 	<img src="images/results1.png" style="width: 55%; height: 55%;">
 	<br>
@@ -265,10 +267,10 @@ persal history. -->
 	</ul>
 	<br>
 	<br>
-</section>
+</section> -->
 
 
-<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+<!-- <section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
 	<h3>BEAST - model based approach</h3>
 	<img src="images/results2.png" style="width: 55%; height: 55%;">
 	<br>
@@ -277,7 +279,7 @@ persal history. -->
 			<li >Bayesian phylogeography results in posterior <font color="#ff6347">distributions</font> of plausible histories.</li>
 	</ul>
 <br>
-</section>
+</section> -->
 
 <!-- major challenge for visualisation -->
 <section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
@@ -285,7 +287,6 @@ persal history. -->
 	<img src="images/results3.png" style="width: 55%; height: 55%;">
 	<!-- <br> -->
 	<ul>
-
 		<li >Branch lengths can be rescaled into <font color="#ff6347">real time units</font> using a molecular clock.</li>
 			<li >Bayesian phylogeography results in whole posterior <font color="#ff6347">distributions</font> of plausible histories.</li>
 				<li>Additional sources of information. </li>
@@ -313,10 +314,10 @@ persal history. -->
 
 
 <!-- discrete (markov chain) -->
-<section data-background="images/overImg.png" data-background-transition="none">
+<!-- <section data-background="images/overImg.png" data-background-transition="none">
 	<h3>Discrete phylogenetic diffusion</h3>
 	<img src="images/discrete1.png" style="width: 100%; height: 100%;">
-</section>
+</section> -->
 
 
 
@@ -325,14 +326,14 @@ persal history. -->
 	<img src="images/discrete.png" style="width: 65%; height: 65%;">
 	<br>
 	<ul>
+		<font size=5>
 	 <li> Each state is a point location. </li>
 	 <li class="fragment"> Branches with a state transition are projected as arcs.</li>
 	<!--diameter  proportional to the number of branches maintaining that state -->
 	 <li class="fragment"> Branches which maintain a state are displayed as circles.</li>
+ </font>
 	</ul>
 </section>
-
-
 
 
 
@@ -346,10 +347,10 @@ persal history. -->
 			</section>
 
 
-			<section data-background="images/overImg.png" data-background-transition="none">
+			<!-- <section data-background="images/overImg.png" data-background-transition="none">
 				<h3>Continuous phylogenetic diffusion</h3>
 				<img src="images/continuous1.png" style="width: 100%; height: 100%;">
-			</section>
+			</section> -->
 
 
 <!-- continuous (brownian motion) -->
@@ -364,23 +365,23 @@ imputing the locations for each branch that is sliced (Figure  il-
 lustrates two time slices). All these time-specific location estimates
 can be used to build a credible contour through kernel density esti-
 mation. -->
-<section data-background="images/overImg.png" data-background-transition="none">
+<!-- <section data-background="images/overImg.png" data-background-transition="none">
 	<h3>SpreaD3 - vizualizing continuous phylogenetic diffusion</h3>
 	<img src="images/continuous.png" style="width: 60%; height: 60%;">
 	<br>
-	<ul>
+	<ul> -->
 <!-- single tree can be projected but more importantly -->
-	 <li> Bayesian statistics: whole posterior distribution of trees.</li>
-	 	 <li class="fragment"> Each tree represents a valid hypothesis! </li>
+	 <!-- <li> Bayesian statistics: whole posterior distribution of trees.</li>
+	 	 <li class="fragment"> Each tree represents a valid hypothesis! </li> -->
 		 <!-- any summary must present point estimate AND uncertainty -->
-	 <li class="fragment"> Statistical estimates of the uncertainty at the internal nodes. </li>
+	 <!-- <li class="fragment"> Statistical estimates of the uncertainty at the internal nodes. </li>
 	</ul>
-</section>
+</section> -->
 
 
-<section data-background="images/overImg.png" data-background-transition="none">
+<!-- <section data-background="images/overImg.png" data-background-transition="none">
 		<h1> <font color="#df8f09"> Enjoy the demo </font></h1>
-	</section>
+	</section> -->
 
 
 
@@ -396,7 +397,7 @@ mation. -->
 		<h3>Support for animated 3D projections in <a href="http://earth.google.com">GoogleEarth</a> </h3>
 		<br>
 						<img src="images/googleearth.png" style="width: 80%; height: 80%;">
-									<h4>Influenza A H5N1 data also used by Lemey et al. (2009)</h4>
+									<h4>Influenza A H5N1 data also used by <a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000520">[Lemey et al 2009]</a></h4>
 	</section>
 
 
@@ -411,6 +412,16 @@ mation. -->
 					 <!-- (here the time spent by Markov chain in a state) -->
 					 deviates from the prior beliefs.
 </font>
+				 </p>
+	</section>
+
+
+	<section data-background="images/overImg.png" data-background-transition="none">
+		<h3>Visualizing a full posterior distribution of trees</h3>
+		<!-- <br> -->
+						<img src="images/posterior_trees.png" style="width: 65%; height: 65%;">
+		 		 <p>
+					 Indo-european languages dataset from <a>Bouckaert et al. (2012)</a>.
 				 </p>
 	</section>
 
@@ -431,7 +442,7 @@ mation. -->
 											<p> <font size=5>
 												 Antigenic coordinates measures how antigenically dissimilar virus strains are.
 												 <br>
-												 Swine influenza A viruses dataset, [Lewis et al. (2016)].
+												 Swine influenza A viruses dataset, <a>[Lewis et al. (2016)]</a>.
 						 </font>
 											</p>
 			<!-- <ul>

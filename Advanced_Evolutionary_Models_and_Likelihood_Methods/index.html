@@ -28,7 +28,7 @@
 		<div class="slides">
 
 			<section data-background="#cce8cf" data-background-transition="none" data-transition="slide">
-				<h2>Advanced Evolutionary Models and Likelihood Methods</h2>
+				<h2>Evolutionary Models and Likelihood Methods</h2>
 				<br>
 				<span> Informal introduction to Markov Models in molecular phylogenetics</span>
 				<br>
@@ -63,7 +63,7 @@
 					<br>
 				<span> Slides are also availiable online:</span>
 				<br>
-				<a href="http://fbielejec.github.io/veme2016"> http://fbielejec.github.io/veme2016</a>
+				<a href="https://fbielejec.github.io/veme2016"> http://fbielejec.github.io/veme2016</a>
 			</section>
 
 
@@ -84,7 +84,7 @@
 			<section data-background="none" data-background-transition="none">
 				<h2>Stochastic process</h2>
 				<p>
-					The stochastic process $X$ is a collection $\left\{ X(t):\; t\in T\right\} $,
+					The (discrete) stochastic process $X$ is a collection $\left\{ X(t):\; t\in T\right\} $,
 					where each value $X(t)$ is a random variable drawn from a discrete state space $\mathcal{E}$,
 					with $K$ possible values, indexed by orderer time $T$.
 				</p>
@@ -120,7 +120,8 @@
 			</section>
 
 			<section data-background="none" data-background-transition="none" data-transition="slide">
-				<h3>Phylogenetic tree implies a <font color="#df8f09">character substitution process</font> leading to observed tip states</h3>
+				<h3>Phylogenetic tree implies a <font color="#df8f09">character substitution process</font> leading to
+					observed tip states</h3>
 			</section>
 
 			<section data-background="none" data-background-transition="none">
@@ -156,7 +157,8 @@
 						<a href="https://en.wikipedia.org/wiki/Poisson_distribution">Poisson distribution</a> with expected number of events $r t$. </li>
 					<li class="fragment">The waiting time between any two mutations is
 						<!-- the mean of exponential distribution -->
-						<a href="https://en.wikipedia.org/wiki/Exponential_distribution">exponentially distributed</a> with parameter $r$, thus the average waiting time between the occurrence of events is $1/r$.</li>
+						<a href="https://en.wikipedia.org/wiki/Exponential_distribution">exponentially distributed</a> with parameter $r$,
+						thus the average waiting time between the occurrence of events is $1/r$.</li>
 				</ul>
 			</section>
 
@@ -239,7 +241,9 @@
 					<li> The simplest model of nucleotide substitution
 						<a href="http://garfield.library.upenn.edu/classics1990/A1990CZ67100002.pdf">[Jukes and Cantor, 1969]</a>
 					</li>
-					<li> Transition probabilities are given by: $p_{ij}\left(t\right)=\begin{cases} \frac{1}{4}+\frac{3}{4}e^{-4rt} & \text{if }i=j\\ \frac{1}{4}-\frac{1}{4}e^{-4rt} & \text{otherwise} \end{cases}$
+					<li> Transition probabilities are given by: $p_{ij}\left(t\right)=\begin{cases}
+						\frac{1}{4}+\frac{3}{4}e^{-4\theta t} & \text{if }i=j\\ \frac{1}{4}-\frac{1}{4}e^{-4 \theta t} & \text{otherwise}
+						\end{cases}$
 					</li>
 				</ul>
 			</section>
@@ -335,7 +339,21 @@
 			</section>
 
 
-			<section data-background="none" data-background-transition="none" data-transition="slide">
+			<section data-background="none" data-background-transition="none" data-transition="none">
+				<h3>Example: Coin tosses</h3>
+				<br>
+				<img class="stretch" src="images/likelihood1.png">
+				<p>
+					<!-- analytically by taking the derivative, setting it equal to 0, solving for parameter -->
+					Curve presents the likelihood function for the coin tosses example: $\mathrm{L}(\theta \, | \, k=8,n=10)$.
+					Would you say the coin is fair?
+					<br>
+					<font color="#df8f09">See the R script</font>
+					<!-- <br> The MLE: $\hat{\theta}=\frac{8}{10}=0.8$ -->
+				</p>
+			</section>
+
+			<section data-background="none" data-background-transition="none" data-transition="none">
 				<h3>Example: Coin tosses</h3>
 				<br>
 				<img class="stretch" src="images/likelihood2.png">
@@ -346,6 +364,60 @@
 				</p>
 			</section>
 
+
+			<section data-background="none" data-background-transition="none" data-transition="slide">
+				<h3>How to find the MLE?</h3>
+				<!-- <br>
+				<p>
+	        Accomplished by numerical routines like Newton-Raphson.
+		  	</p> -->
+			</section>
+
+			<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+			<h3>How to find the MLE?</h3>
+				<br>
+				<p>
+        In simple cases can be done analytically:
+				</p>
+						<p>
+							<!-- analytically by taking the derivative, setting it equal to 0, solving for parameter -->
+							${\displaystyle \log L(\theta\,|\, k,n)=\log\binom{n}{k}+x\log(\theta)+(n-k)\log(1-\theta)}$
+							${\displaystyle \frac{\partial\log L(\theta\,|\,8,10)}{\partial\theta}=\frac{8}{\theta}-\frac{10-8}{1-\theta}}=0\;\Longleftrightarrow\;\theta=0.8$
+			</p>
+			</section>
+
+			<section data-background="none" data-background-transition="none" data-transition="slide">
+				<h3>How to find the MLE?</h3>
+				<br>
+				<p>
+	        Typically accomplished by numerical routines like Newton-Raphson.
+		  	</p>
+			</section>
+
+			<section data-background="images/overImg.png" data-background-transition="none" data-transition="none">
+				<h3>Newton-Raphson (one dimension)</h3>
+			   <br>
+						<p>
+							Let's apply the Newton Raphson method to find the parameter $\theta$ which maximizes the function:
+							$f(\theta)=\frac{e^{\theta}}{(1+e^{\theta})^{2}}$
+						</p>
+
+			<p class="fragment">
+			Method starts with a function $f$, the function's derivative $f'$ (gradient), second order derivative $f''$ (hessian) and an initial guess
+			$\theta_{0}$ for the optimum of $f$.
+			</p>
+
+			<p class="fragment">
+				At every iteration:
+			$\theta_{n+1}=\theta_{n}-\frac{f'\left(\theta_{n}\right)}{f''\left(\theta_{n}\right)}$
+			until some convergence criteria is reached.
+			 </p>
+
+						<p class="fragment">
+			<font color="#df8f09">Let's see it in action!</font>
+					</p>
+
+			</section>
 
 			<section data-background="#cce8cf" data-background-transition="none" data-transition="slide">
 				<h3>Maximum Likelihood in phylogenetics</h3>
